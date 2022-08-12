@@ -1,0 +1,150 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&display=swap");
+
+:root {
+  --primary-color: #f25278;
+  --secondary-color: rgb(69, 69, 236);
+  --text-primary: #fff;
+  --border-color: #bdbdbd;
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Open Sans", "Courier New", Courier, monospace;
+}
+
+body {
+  min-height: calc(100vh - 1.5rem);
+  width: 100%;
+  background-color: var(--primary-color);
+}
+
+body li {
+  list-style-type: none;
+}
+
+.header-text {
+  width: 100%;
+  text-align: center;
+  margin: 1.5rem 0;
+  color: var(--text-primary);
+}
+.container {
+  margin: 0 auto;
+  max-width: 25rem;
+}
+
+.input-container {
+  margin: 1rem auto;
+  display: flex;
+  background-color: var(--text-primary);
+  align-items: center;
+}
+.input-container > input {
+  padding: 10px;
+  width: 100%;
+  outline: none;
+  font-size: 1.15rem;
+  border: 0;
+}
+.input-container > button {
+  padding: 0 1.2rem;
+  background: transparent;
+  border: 0;
+  color: var(--secondary-color);
+  font-weight: 600;
+  font-size: 1.05rem;
+  margin-right: 8px;
+  cursor: pointer;
+}
+.todo-container {
+  background-color: var(--text-primary);
+  margin: 1.5rem auto;
+}
+
+.todo-container button {
+  min-width: 1.5rem;
+  height: 1.5rem;
+  margin-right: 8px;
+  background-color: var(--primary-color);
+  color: var(--text-primary);
+  border: 0;
+  outline: none;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.todo {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  padding: 1rem 0;
+}
+
+.todo.sub-todo-input {
+  padding: 0 0 1rem 1rem;
+}
+
+.todo-border {
+  border-bottom: 1px solid var(--border-color);
+}
+
+.todo button {
+  padding: 0 10px;
+}
+
+.todo input[type="checkbox"] {
+  margin-right: 8px;
+  cursor: pointer;
+}
+.todo input[type="text"] {
+  padding: 6px;
+  flex: 1;
+  outline: none;
+}
+.todo p {
+  font-size: 1.05rem;
+  flex: 1;
+  word-break: break-all;
+  color: gray;
+  margin-bottom: 4px;
+  text-align: start;
+  padding: 0 8px;
+}
+
+p.text-through {
+  text-decoration: line-through;
+  color: var(--primary-color);
+}
+
+.todo-border .todo-border:last-child {
+  border: 0;
+}
+.sub-todo-wrapper {
+  padding-left: 10px;
+}
+
+/* Utility classes */
+.d-none {
+  display: none;
+}
+
+.d-block {
+  display: block;
+}
+.padding-xs {
+  padding: 1rem;
+}
+
+.clear-btn {
+  margin: 1rem 1rem 0.4rem auto;
+  display: block;
+  padding: 0 1rem;
+}
+
+.invisible {
+  visibility: hidden;
+}
+.padding-bottom-0 {
+  padding-bottom: 0;
+}
