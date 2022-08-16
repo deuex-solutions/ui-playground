@@ -16,8 +16,9 @@ module.exports = {
   settings: {
     'import/resolver': {
       node: {
-        paths: ['src'],
+        paths: ['src/'],
         extensions: ['.js', '.ts', '.d.ts', '.tsx'],
+        moduleDirectory: ['node_modules', 'src/'],
       },
     },
   },
@@ -45,4 +46,4 @@ module.exports = {
     'react/no-array-index-key': 'off',
     'react/no-danger': 'off',
   },
-};
+}
