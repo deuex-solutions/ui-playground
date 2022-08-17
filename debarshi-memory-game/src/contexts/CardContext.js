@@ -2,13 +2,15 @@ import toast from 'react-hot-toast'
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import cardData from 'constants/cardData'
+import gameLevels from 'constants/levels'
 
 const CardContext = createContext()
 
 export const useCardContext = () => useContext(CardContext)
 
-const getShuffledCards = () => {
-  const list = [...cardData, ...cardData]
+const getShuffledCards = (multiplier = 4) => {
+  const cards = cardData.slice(0, cardData.length - multiplier)
+  const list = [...cards, ...cards]
     .sort(() => Math.floor(Math.random() - 0.5))
     .map((card) => ({ ...card, id: uuidv4() }))
   return list
@@ -37,7 +39,7 @@ const CardContextProvider = ({ children }) => {
       } else {
         setTimeout(() => {
           setSelected({})
-        }, 1000)
+        }, 500)
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -63,16 +65,47 @@ const CardContextProvider = ({ children }) => {
     toast.success('Correct Answer', { duration: 1500 })
   }, [])
 
-  const reset = useCallback(() => {
-    setCardList(getShuffledCards())
+  const reset = useCallback((resetCards = true) => {
     setSelected({})
     setTurns(0)
     setPoints(0)
+    if (resetCards) {
+      setCardList(getShuffledCards())
+    }
   }, [])
 
+  const onLevelChange = useCallback(
+    (currentLevel) => {
+      const { EASY, HARD, MEDIUM } = gameLevels
+
+      let cards
+      if (currentLevel === EASY) {
+        cards = getShuffledCards(4)
+      }
+      if (currentLevel === MEDIUM) {
+        cards = getShuffledCards(2)
+      }
+      if (currentLevel === HARD) {
+        cards = getShuffledCards(0)
+      }
+
+      reset(false)
+      setCardList(cards)
+    },
+    [reset]
+  )
+
   const value = useMemo(
-    () => ({ cardList, turns, selected, points, onSelected, reset }),
-    [cardList, turns, selected, points, onSelected, reset]
+    () => ({
+      cardList,
+      turns,
+      selected,
+      points,
+      onSelected,
+      reset,
+      onLevelChange,
+    }),
+    [cardList, turns, selected, points, onSelected, reset, onLevelChange]
   )
 
   return <CardContext.Provider value={value}>{children}</CardContext.Provider>

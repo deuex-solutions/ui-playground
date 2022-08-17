@@ -5,14 +5,14 @@ import { useCardContext } from 'contexts/CardContext'
 import { Card, Modal } from 'components'
 import { modals } from 'constants/modals'
 import { useModalContext } from 'contexts/ModalContext'
+import levels from 'constants/levels'
 
 const App = () => {
   const [gameOver, setGameOver] = useState(false)
   const [username, setUsername] = useState('')
-
   const inputRef = useRef()
 
-  const { cardList, selected, onSelected, points, turns, reset } = useCardContext()
+  const { cardList, selected, points, turns, reset, onSelected, onLevelChange } = useCardContext()
   const { state, dispatch } = useModalContext()
 
   useEffect(() => {
@@ -40,6 +40,8 @@ const App = () => {
     setGameOver(false)
     reset()
   }
+
+  const handleOnLevelChange = (current) => onLevelChange(current)
 
   const renderFormModal = () => (
     <Modal open={state.modal === modals.START_MODAL} onClose={handleModal}>
@@ -94,11 +96,24 @@ const App = () => {
       <Typography component="h3" variant="h3" align="center" sx={{ marginTop: '1rem' }}>
         Memory Game
       </Typography>
+
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', margin: '1rem 0' }}>
+        <Button variant="outlined" onClick={() => handleOnLevelChange(levels.EASY)}>
+          EASY
+        </Button>
+        <Button variant="outlined" onClick={() => handleOnLevelChange(levels.MEDIUM)}>
+          MEDIUM
+        </Button>
+        <Button variant="outlined" onClick={() => handleOnLevelChange(levels.HARD)}>
+          HARD
+        </Button>
+      </Box>
+
       <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-        <Typography component="h6" variant="h6" align="left" sx={{ margin: '1rem 0' }}>
+        <Typography component="h6" variant="h6" align="left">
           Player: {username}
         </Typography>
-        <Typography component="h6" variant="h6" align="left" sx={{ margin: '1rem 0' }}>
+        <Typography component="h6" variant="h6" align="left">
           Points: {points}
         </Typography>
       </Box>
