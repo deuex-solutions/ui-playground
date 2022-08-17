@@ -45,5 +45,6 @@ module.exports = {
     'react/react-in-jsx-scope': 'off',
     'react/no-array-index-key': 'off',
     'react/no-danger': 'off',
+    'no-use-before-define': 'off',
   },
 }

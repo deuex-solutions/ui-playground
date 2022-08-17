@@ -1,15 +1,15 @@
-import { useEffect, useState } from 'react'
 import cn from 'clsx'
+import { useEffect, useState } from 'react'
 import { Card as MuiCard, CardMedia, Box, Typography } from '@mui/material'
 
-const Card = ({ card, flip, onClick, modalOpen }) => {
+const Card = ({ card, flip, onClick, initialFlip }) => {
   const [showCards, setShowCards] = useState(false)
 
   useEffect(() => {
-    if (!modalOpen) {
+    if (initialFlip) {
       setShowCards(true)
     }
-  }, [modalOpen])
+  }, [initialFlip])
 
   useEffect(() => {
     const timerId = setTimeout(() => {

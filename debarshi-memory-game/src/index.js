@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import CardContextProvider from 'contexts/CardContext'
+import ModalProvider from 'contexts/ModalContext'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
 import './styles/index.css'
@@ -8,9 +9,11 @@ import './styles/index.css'
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
   <React.StrictMode>
-    <CardContextProvider>
-      <App />
-    </CardContextProvider>
+    <ModalProvider>
+      <CardContextProvider>
+        <App />
+      </CardContextProvider>
+    </ModalProvider>
   </React.StrictMode>
 )
 
