@@ -39,7 +39,7 @@ const CardContextProvider = ({ children }) => {
       } else {
         setTimeout(() => {
           setSelected({})
-        }, 500)
+        }, 900)
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

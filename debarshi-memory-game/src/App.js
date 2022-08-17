@@ -1,11 +1,20 @@
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { Toaster } from 'react-hot-toast'
 import { Box, Button, Grid, TextField, Typography } from '@mui/material'
 import { useCardContext } from 'contexts/CardContext'
-import { Card, Modal } from 'components'
+import { Card, Modal, Timer } from 'components'
 import { modals } from 'constants/modals'
 import { useModalContext } from 'contexts/ModalContext'
 import levels from 'constants/levels'
+
+const boxStyles = {
+  backgroundColor: '#fff',
+  width: '20rem',
+  height: '12rem',
+  padding: '1rem',
+  margin: '0 auto',
+  borderRadius: '4px',
+}
 
 const App = () => {
   const [gameOver, setGameOver] = useState(false)
@@ -15,12 +24,16 @@ const App = () => {
   const { cardList, selected, points, turns, reset, onSelected, onLevelChange } = useCardContext()
   const { state, dispatch } = useModalContext()
 
+  const handleGameOver = useCallback(() => {
+    setGameOver(true)
+    dispatch({ type: modals.END_MODAL })
+  }, [dispatch])
+
   useEffect(() => {
     if (turns === cardList.length) {
-      setGameOver(true)
-      dispatch({ type: modals.END_MODAL })
+      handleGameOver()
     }
-  }, [cardList.length, turns, dispatch])
+  }, [cardList.length, turns, dispatch, handleGameOver])
 
   const handleOnCardClick = (item) => onSelected(item)
 
@@ -45,16 +58,7 @@ const App = () => {
 
   const renderFormModal = () => (
     <Modal open={state.modal === modals.START_MODAL} onClose={handleModal}>
-      <Box
-        sx={{
-          backgroundColor: '#fff',
-          width: '20rem',
-          height: '12rem',
-          padding: '1rem',
-          margin: '0 auto',
-          borderRadius: '4px',
-        }}
-      >
+      <Box sx={boxStyles}>
         <Typography component="p" variant="p" align="center" sx={{ marginBottom: '1rem' }}>
           Enter your name to start the game
         </Typography>
@@ -68,16 +72,7 @@ const App = () => {
 
   const renderGameOverModal = () => (
     <Modal open={state.modal === modals.END_MODAL} onClose={() => handleModal(modals.END_MODAL)}>
-      <Box
-        sx={{
-          backgroundColor: '#fff',
-          width: '20rem',
-          height: '12rem',
-          padding: '1rem',
-          margin: '0 auto',
-          borderRadius: '4px',
-        }}
-      >
+      <Box sx={boxStyles}>
         <Typography component="h4" variant="h4" align="center" sx={{ marginBottom: '1rem' }}>
           GAME OVER
         </Typography>
@@ -96,6 +91,8 @@ const App = () => {
       <Typography component="h3" variant="h3" align="center" sx={{ marginTop: '1rem' }}>
         Memory Game
       </Typography>
+
+      {!state.modal && <Timer onExpire={handleGameOver} />}
 
       <Box sx={{ display: 'flex', justifyContent: 'space-between', margin: '1rem 0' }}>
         <Button variant="outlined" onClick={() => handleOnLevelChange(levels.EASY)}>
