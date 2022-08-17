@@ -6,6 +6,48 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+* {
+  box-sizing: border-box;
+}
+.app {
+  max-width: 90%;
+  margin: 0 auto;
+}
+
+.card {
+  position: relative;
+  height: 16rem;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+}
+.front-card,
+.back-card {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+.card .front-card {
+  transform: rotateY(90deg);
+  transition: transform 0.9s;
+}
+.flip .front-card {
+  transform: rotateY(0deg);
+  transition: transform 0.9s;
+}
+.back-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: rotateY(0deg);
+  transition: transform 0.9s;
+  background-color: pink;
+}
+.flip .back-card {
+  transform: rotateY(90deg);
+  transition: transform 0.9s;
+}
+.d-none {
+  display: none;
 }

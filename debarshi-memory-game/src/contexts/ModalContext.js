@@ -23,7 +23,6 @@ export const useModalContext = () => useContext(ModalContext)
 
 const ModalProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState)
-  console.log(state)
 
   const value = useMemo(() => ({ state, dispatch }), [state])
 
