@@ -44,4 +44,21 @@ const markTodosComplete = (todos = []) => {
   })
 }
 
-export { validateInput, getFilteredTodos, findTodo, markTodosComplete }
+const findNode = (parentNode = {}, tagName = "") => {
+  let resultNode
+  parentNode?.childNodes?.forEach((nodeItem) => {
+    console.log({ parentNode, tagName })
+    if (!resultNode && nodeItem.tagName === tagName) {
+      resultNode = nodeItem
+    }
+  })
+  return resultNode
+}
+
+export {
+  validateInput,
+  getFilteredTodos,
+  findTodo,
+  markTodosComplete,
+  findNode,
+}

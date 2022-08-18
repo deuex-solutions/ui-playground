@@ -62,6 +62,7 @@ body li {
 .input-container button:disabled,
 .todo-container button:disabled {
   color: var(--disabled-color);
+  cursor: initial;
 }
 
 .todo-container {
@@ -110,7 +111,11 @@ body li {
 .todo button {
   padding: 0 10px;
 }
-
+.todo button:disabled {
+  opacity: 0.8;
+  color: var(--text-primary);
+  cursor: initial;
+}
 .todo input[type="checkbox"] {
   margin-right: 8px;
   cursor: pointer;
