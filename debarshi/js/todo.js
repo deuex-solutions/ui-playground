@@ -36,24 +36,26 @@ const createTodoNodes = (todo, draggable, includeChildTodos) => {
   const todoTextEl = document.createElement("p")
   todoTextEl.textContent = todo.text
 
-  const deleteTodoBtn = createTodoButton({ textContent: "X" })
+  const deleteTodoBtn = createTodoButton()
+  deleteTodoBtn.innerHTML = "<i class='fas fa-trash'></i>"
   deleteTodoBtn.setAttribute("id", "delete-todo")
 
-  const editTodoBtn = createTodoButton({ textContent: "EDIT" })
+  const editTodoBtn = createTodoButton()
+  editTodoBtn.innerHTML = "<i class='fas fa-edit'></i>"
   editTodoBtn.setAttribute("id", "edit-todo")
 
-  const addSubTodoBtn = createTodoButton({ textContent: "New Todo" })
+  const addSubTodoBtn = createTodoButton({ textContent: "Add Sub Todo" })
   addSubTodoBtn.setAttribute("id", "sub-todo")
   addSubTodoBtn.classList.add("invisible")
 
   const todoFragment = new DocumentFragment()
 
   todoFragment.append(
-    deleteTodoBtn,
     todoCheckEl,
     todoTextEl,
     addSubTodoBtn,
     editTodoBtn,
+    deleteTodoBtn,
   )
 
   divRoot.appendChild(todoFragment)

@@ -22,7 +22,7 @@ const createTodoRoot = (hasChildTodos = false) => {
     todoEl.addEventListener("mouseover", onTodoMouseOver)
     todoEl.addEventListener("mouseleave", onTodoMouseLeave)
   } else {
-    todoEl.classList.add("sub-todo-wrapper")
+    todoEl.classList.add("sub-todo")
   }
 
   return todoEl

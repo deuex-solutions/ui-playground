@@ -59,9 +59,11 @@ body li {
   cursor: pointer;
 }
 
-.input-container button:disabled {
+.input-container button:disabled,
+.todo-container button:disabled {
   color: var(--disabled-color);
 }
+
 .todo-container {
   background-color: var(--text-primary);
   margin: 1.5rem auto;
@@ -79,15 +81,26 @@ body li {
   font-weight: 600;
 }
 
+#todo-wrapper li {
+  padding: 1rem 0;
+}
+
+#todo-wrapper .todo-border li:last-child {
+  padding-bottom: 0;
+}
+
+.todo-border .todo.sub-todo-input:last-child {
+  padding-bottom: 0;
+}
+
 .todo {
   display: flex;
   width: 100%;
   align-items: center;
-  padding: 1rem 0;
 }
 
 .todo.sub-todo-input {
-  padding: 0 0 1rem 1rem;
+  padding-top: 1rem;
 }
 
 .todo-border {
@@ -125,7 +138,7 @@ p.text-through {
 .todo-border .todo-border:last-child {
   border: 0;
 }
-.sub-todo-wrapper {
+.sub-todo {
   padding-left: 10px;
 }
 
@@ -135,6 +148,7 @@ p.text-through {
   align-items: center;
   margin: 1rem 0 1rem auto;
 }
+
 /* Utility classes */
 .d-none {
   display: none;
@@ -160,4 +174,8 @@ p.text-through {
 }
 .padding-bottom-0 {
   padding-bottom: 0;
+}
+
+.padding-top-0 {
+  padding-top: 0;
 }
