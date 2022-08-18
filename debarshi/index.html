@@ -15,19 +15,23 @@
     <title>FlixTodos</title>
   </head>
   <body>
-    <h2 class="header-text">TO-DO LIST</h2>
-    <div class="container input-container">
-      <input type="text" placeholder="New Task" />
-      <button type="button" disabled>ADD</button>
-    </div>
-    <div class="container todo-container d-none">
-      <div id="todo-wrapper"></div>
-      <div class="action-container">
-        <button id="mark-complete" class="action-btn">Mark All Complete</button>
-        <button id="clear" class="action-btn">Delete All</button>
+    <main>
+      <h2 class="header-text">TO-DO LIST</h2>
+      <div class="container input-container">
+        <input type="text" placeholder="New Task" />
+        <button type="button" disabled>ADD</button>
       </div>
-    </div>
-    <h3 class="header-text" id="no-todo-text">No Todos found</h3>
+      <div class="container todo-container d-none">
+        <div id="todo-wrapper"></div>
+        <div class="action-container">
+          <button id="mark-complete" class="action-btn">
+            Mark All Complete
+          </button>
+          <button id="clear" class="action-btn">Delete All</button>
+        </div>
+      </div>
+      <h3 class="header-text" id="no-todo-text">No Todos found</h3>
+    </main>
     <script type="module" src="./js/todo.js"></script>
   </body>
 </html>

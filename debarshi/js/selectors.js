@@ -1,3 +1,4 @@
+const mainEl = document.querySelector("main")
 const inputEl = document.querySelector("input")
 const cardContainer = document.querySelector(".todo-container")
 const todoWrapper = document.querySelector("#todo-wrapper")
@@ -12,4 +13,5 @@ export {
   addTodoBtn,
   noTodoText,
   markAllCompleteBtn,
+  mainEl,
 }
