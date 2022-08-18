@@ -17,7 +17,6 @@ const boxStyles = {
 }
 
 const App = () => {
-  const [gameOver, setGameOver] = useState(false)
   const [username, setUsername] = useState('')
   const inputRef = useRef()
 
@@ -25,7 +24,6 @@ const App = () => {
   const { state, dispatch } = useModalContext()
 
   const handleGameOver = useCallback(() => {
-    setGameOver(true)
     dispatch({ type: modals.END_MODAL })
   }, [dispatch])
 
@@ -50,7 +48,6 @@ const App = () => {
   const resetGame = () => {
     setUsername('')
     handleModal(modals.START_MODAL)
-    setGameOver(false)
     reset()
   }
 
@@ -116,7 +113,7 @@ const App = () => {
       </Box>
 
       {renderFormModal()}
-      {gameOver && renderGameOverModal()}
+      {renderGameOverModal()}
 
       <Grid container columns={{ xs: 4, sm: 8, md: 12 }} spacing={2} sx={{ marginBottom: '2rem' }}>
         {cardList.map((card) => (
