@@ -18,6 +18,7 @@ import {
 import {
   findTodo,
   getFilteredTodos,
+  markTodosComplete,
   validateInput,
 } from "./utils/helperfuncs.js"
 
@@ -251,6 +252,9 @@ const handleOnTodoClick = (event) => {
     if (id === "clear") {
       return clearAllTodos()
     }
+    if (id === "mark-complete") {
+      return handleMarkAllComplete()
+    }
   }
 }
 
@@ -275,8 +279,30 @@ const render = (
   parentNode.appendChild(docFragment)
 }
 
+// Handle add todo button disabled status on input change
+const handleInputChange = (event) => {
+  const { value = "", nextSibling } = event.target
+  const submitButton = nextSibling.nextSibling
+
+  if (submitButton && validateInput(value)) {
+    submitButton.disabled = false
+  } else {
+    submitButton.disabled = true
+  }
+}
+
+// Marks all todos as complete
+const handleMarkAllComplete = () => {
+  const completedTodos = markTodosComplete(todos)
+  todos.length = 0
+  todos.push(...completedTodos)
+  todoWrapper.innerHTML = ""
+  render()
+}
+
 // event listeners attached
 addTodoBtn.addEventListener("click", handleAddTodo)
 cardContainer.addEventListener("click", handleOnTodoClick)
+inputEl.addEventListener("keyup", handleInputChange)
 
 export default render

@@ -1,6 +1,5 @@
 const validateInput = (value = "") => {
   if (value === "") {
-    alert("Todo is required")
     return false
   }
   return true
@@ -35,4 +34,14 @@ const findTodo = (todos = [], todoId) => {
   return searchedTodo
 }
 
-export { validateInput, getFilteredTodos, findTodo }
+const markTodosComplete = (todos = []) => {
+  return todos.map((todoItem) => {
+    if (todoItem?.children?.length > 0) {
+      const subTodos = markTodosComplete(todoItem.children)
+      todoItem.children = [...subTodos]
+    }
+    return { ...todoItem, isCompleted: true }
+  })
+}
+
+export { validateInput, getFilteredTodos, findTodo, markTodosComplete }

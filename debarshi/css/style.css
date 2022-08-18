@@ -5,6 +5,7 @@
   --secondary-color: rgb(69, 69, 236);
   --text-primary: #fff;
   --border-color: #bdbdbd;
+  --disabled-color: rgba(189, 189, 235, 0.925);
 }
 * {
   box-sizing: border-box;
@@ -56,6 +57,10 @@ body li {
   font-size: 1.05rem;
   margin-right: 8px;
   cursor: pointer;
+}
+
+.input-container button:disabled {
+  color: var(--disabled-color);
 }
 .todo-container {
   background-color: var(--text-primary);
@@ -124,6 +129,12 @@ p.text-through {
   padding-left: 10px;
 }
 
+.action-container {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  margin: 1rem 0 1rem auto;
+}
 /* Utility classes */
 .d-none {
   display: none;
@@ -136,12 +147,14 @@ p.text-through {
   padding: 1rem;
 }
 
-.clear-btn {
-  margin: 1rem 1rem 0.4rem auto;
+.action-container .action-btn {
   display: block;
   padding: 0 1rem;
+  margin: 0;
 }
-
+.action-container .action-btn:first-child {
+  margin-right: 8px;
+}
 .invisible {
   visibility: hidden;
 }
