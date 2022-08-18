@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Toaster } from 'react-hot-toast'
 import { Box, Button, Grid, TextField, Typography } from '@mui/material'
 import { useCardContext } from 'contexts/CardContext'
@@ -20,20 +20,17 @@ const App = () => {
   const [username, setUsername] = useState('')
   const inputRef = useRef()
 
-  const { cardList, selected, points, turns, reset, onSelected, onLevelChange } = useCardContext()
+  const { cardList, selected, points, turns, reset, onCardSelected, onLevelChange } =
+    useCardContext()
   const { state, dispatch } = useModalContext()
-
-  const handleGameOver = useCallback(() => {
-    dispatch({ type: modals.END_MODAL })
-  }, [dispatch])
 
   useEffect(() => {
     if (turns === cardList.length) {
-      handleGameOver()
+      dispatch({ type: modals.END_MODAL })
     }
-  }, [cardList.length, turns, dispatch, handleGameOver])
+  }, [cardList.length, turns, dispatch])
 
-  const handleOnCardClick = (item) => onSelected(item)
+  const handleOnCardClick = (item) => onCardSelected(item)
 
   const handleModal = (modalType) => dispatch({ type: modalType })
 
@@ -89,7 +86,7 @@ const App = () => {
         Memory Game
       </Typography>
 
-      {!state.modal && <Timer onExpire={handleGameOver} />}
+      {!state.modal && <Timer onExpire={() => dispatch({ type: modals.END_MODAL })} />}
 
       <Box sx={{ display: 'flex', justifyContent: 'space-between', margin: '1rem 0' }}>
         <Button variant="outlined" onClick={() => handleOnLevelChange(levels.EASY)}>

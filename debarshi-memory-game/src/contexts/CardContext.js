@@ -18,55 +18,53 @@ const getShuffledCards = (multiplier = 4) => {
 
 const CardContextProvider = ({ children }) => {
   const [cardList, setCardList] = useState(getShuffledCards)
-  const [selected, setSelected] = useState({})
+  const [selectedCards, setSelectedCards] = useState({})
   const [turns, setTurns] = useState(0)
   const [points, setPoints] = useState(0)
 
   useEffect(() => {
-    if (selected?.first && selected?.second) {
-      if (selected.first?.src === selected.second?.src) {
+    if (selectedCards?.first && selectedCards?.second) {
+      if (selectedCards.first?.src === selectedCards.second?.src) {
         setCardList((prevList) => {
           return prevList.map((card) => {
-            if (card.src === selected.first.src) {
+            if (card.src === selectedCards.first.src) {
               return { ...card, isMatch: true }
             }
             return card
           })
         })
-        setSelected({})
-        // eslint-disable-next-line no-use-before-define
+        setSelectedCards({})
         updatePoints()
       } else {
         setTimeout(() => {
-          setSelected({})
+          setSelectedCards({})
         }, 900)
       }
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [cardList, selected.first, selected.second])
+  }, [cardList, selectedCards.first, selectedCards.second])
 
-  const onSelected = useCallback(
+  const onCardSelected = useCallback(
     (card) => {
-      if (selected?.first && selected.first.id !== card.id) {
-        setSelected({
-          ...selected,
+      if (selectedCards?.first && selectedCards.first.id !== card.id) {
+        setSelectedCards({
+          ...selectedCards,
           second: { ...card },
         })
       } else {
-        setSelected({ first: { ...card } })
+        setSelectedCards({ first: { ...card } })
       }
       setTurns((prev) => prev + 1)
     },
-    [selected]
+    [selectedCards]
   )
 
-  const updatePoints = useCallback(() => {
+  const updatePoints = () => {
     setPoints((prev) => prev + 10)
     toast.success('Correct Answer', { duration: 1500 })
-  }, [])
+  }
 
   const reset = useCallback((resetCards = true) => {
-    setSelected({})
+    setSelectedCards({})
     setTurns(0)
     setPoints(0)
     if (resetCards) {
@@ -99,13 +97,13 @@ const CardContextProvider = ({ children }) => {
     () => ({
       cardList,
       turns,
-      selected,
+      selectedCards,
       points,
-      onSelected,
+      onCardSelected,
       reset,
       onLevelChange,
     }),
-    [cardList, turns, selected, points, onSelected, reset, onLevelChange]
+    [cardList, turns, selectedCards, points, onCardSelected, reset, onLevelChange]
   )
 
   return <CardContext.Provider value={value}>{children}</CardContext.Provider>
