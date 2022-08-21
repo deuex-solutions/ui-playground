@@ -8,23 +8,81 @@
   </head>
 
   <body>
+    <nav><a href="index.html" class="home_link">Home</a></nav>
     <div class="container">
-  <div class="row text-center">
-    <h1> Tic-Tac-Toe Game</h1>
-    <h2 class="message">Choose your player:</h2>
-    <form action="#">
-      <fieldset>
-        <input type="radio" name="player-choice" id="player-choice-1" value="X" />
-        <label for="player-choice-1">X</label>
-        <input type="radio" name="player-choice" id="player-choice-2" value="O" />
-        <label for="player-choice-2">O</label>
-      </fieldset>
-      <button id="reset" class="btn btn-primary">Reset</button>
-    </form>
-  </div>
-  <div class="row" id="grid-section">
-    <ul id="grid"></ul>
-  </div>
-</body>
-<script src="script.js"></script>
+      <div class="row text-center">
+        <h1>Tic-Tac-Toe Game</h1>
+        <div class="content">
+          <form>
+            <h2 class="message"></h2>
+            <fieldset>
+              <div class="name_div">
+                <label>Enter Your Name: </label>
+                <input
+                  type="text"
+                  id="username"
+                  class="name"
+                  value=""
+                  required
+                />
+              </div>
+              <div class="level_div">
+                <h2 class="message" id="choose_level">
+                  Choose difficulty Level:
+                </h2>
+                <div>
+                  <input
+                    type="radio"
+                    name="player-choice"
+                    class="player-choice-1"
+                    id="player-choice-1"
+                    value="X"
+                  /><span class="player-choice-1">Easy</span>
+                  <input
+                    type="radio"
+                    name="player-choice"
+                    class="player-choice-2"
+                    id="player-choice-2"
+                    value="O"
+                  /><span class="player-choice-2">Difficult</span>
+                </div>
+              </div>
+            </fieldset>
+            <button id="reset" class="btn btn-primary">Reset</button>
+          </form>
+          <button class="submit_button" onclick="gamelaunch()">Submit</button>
+        </div>
+      </div>
+      <div class="row" id="grid-section">
+        <ul id="grid"></ul>
+      </div>
+    </div>
+    <table class="table">
+      <tr>
+        <td class="cell" id="0"></td>
+        <td class="cell" id="1"></td>
+        <td class="cell" id="2"></td>
+      </tr>
+      <tr>
+        <td class="cell" id="3"></td>
+        <td class="cell" id="4"></td>
+        <td class="cell" id="5"></td>
+      </tr>
+      <tr>
+        <td class="cell" id="6"></td>
+        <td class="cell" id="7"></td>
+        <td class="cell" id="8"></td>
+      </tr>
+    </table>
+    <div class="endgame">
+      <div class="text"></div>
+      <button onClick="startGame()">Replay</button>
+    </div>
+    <div class="selectSym">
+      <p>Select symbol:</p>
+      <button onClick="selectSym('X')">X</button>
+      <button onClick="selectSym('O')">O</button>
+    </div>
+  </body>
+  <script src="script.js"></script>
 </html>
