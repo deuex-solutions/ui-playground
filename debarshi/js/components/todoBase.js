@@ -3,7 +3,7 @@ import render from "../todo.js"
 import { todoWrapper } from "../selectors.js"
 
 const createTodoBase = (todo, props = {}) => {
-  const { draggable = false, classList = [] } = props
+  const { draggable = false } = props
 
   const onTodoDragStart = (event) => {
     const dataId = event.currentTarget.getAttribute("data-id")
@@ -38,7 +38,6 @@ const createTodoBase = (todo, props = {}) => {
 
   const todoRootEl = document.createElement("li")
   todoRootEl.setAttribute("draggable", draggable)
-  todoRootEl.classList.add.apply(todoRootEl.classList, [...classList])
 
   if (todo?.id) {
     todoRootEl.setAttribute("data-id", todo?.id)

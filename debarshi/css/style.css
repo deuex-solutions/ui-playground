@@ -81,31 +81,18 @@ body li {
   font-weight: 600;
 }
 
-#todo-wrapper li {
-  padding: 1rem 0;
-}
-
-#todo-wrapper .todo-border li:last-child {
-  padding-bottom: 0;
-}
-
-.todo-border .todo.sub-todo-input:last-child {
-  padding-bottom: 0;
-}
-
 .todo {
   display: flex;
   width: 100%;
   align-items: center;
   position: relative;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--border-color);
 }
 
 .todo.sub-todo-input {
   padding-top: 1rem;
-}
-
-.todo-border {
-  border-bottom: 1px solid var(--border-color);
+  padding-left: 10px;
 }
 
 button {
@@ -120,8 +107,8 @@ button {
   margin-right: 8px;
   cursor: pointer;
 }
-.todo-border input[type="text"] {
-  padding: 6px;
+.todo input[type="text"] {
+  padding: 0.4rem;
   flex: 1;
   outline: none;
 }
@@ -140,9 +127,6 @@ p.text-through {
   color: var(--primary-color);
 }
 
-.todo-border .todo-border:last-child {
-  border: 0;
-}
 .sub-todo {
   padding-left: 10px;
 }
@@ -183,8 +167,4 @@ p.text-through {
 
 .padding-top-0 {
   padding-top: 0;
-}
-.flex {
-  display: flex;
-  align-items: center;
 }

@@ -20,7 +20,6 @@ import {
 const createTodoNodes = (todo, draggable, includeChildTodos) => {
   const todoBaseEl = createTodoBase(todo, {
     draggable,
-    classList: ["todo-border"],
   })
 
   const divRoot = createTodoRoot(includeChildTodos)
@@ -66,9 +65,7 @@ const createTodoNodes = (todo, draggable, includeChildTodos) => {
 // Toggles a todos' checked and un-checked state
 const toggleTodoCompleted = (event) => {
   const { nextSibling = null } = event.target
-  const todoId = event.target
-    ?.closest("li.todo-border")
-    ?.getAttribute("data-id")
+  const todoId = event.target?.closest("li")?.getAttribute("data-id")
 
   if (todoId) {
     const currentTodo = findTodo(todos, Number(todoId))
@@ -83,7 +80,7 @@ const toggleTodoCompleted = (event) => {
 // Deletes a todo from the DOM
 const deleteTodo = (event) => {
   const { target } = event
-  const todoId = target?.closest("li.todo-border")?.getAttribute("data-id")
+  const todoId = target?.closest("li")?.getAttribute("data-id")
 
   if (todoId) {
     const filteredTodos = getFilteredTodos(todos, Number(todoId))
@@ -107,7 +104,7 @@ const renderEditTodoNodes = (event) => {
 
   if (textNode) {
     const containerNode = document.createElement("div")
-    containerNode.classList.add("flex")
+    containerNode.classList.add("todo")
 
     const editTodoInputEl = createTodoInput({
       type: "text",
@@ -135,7 +132,7 @@ const renderEditTodoNodes = (event) => {
 
 // Create child todo input items
 const renderCreateSubTodoNodes = (event) => {
-  const rootTodoNode = event.target?.closest("li.todo-border")
+  const rootTodoNode = event.target?.closest("li")
 
   const containerChildNode = document.createElement("div")
   containerChildNode.classList.add("todo", "sub-todo-input")
@@ -166,7 +163,7 @@ const renderCreateSubTodoNodes = (event) => {
 // Updates the current todo and attaches into the DOM
 const handleEditTodo = (event) => {
   const { previousSibling = null } = event.target
-  const rootTodoNode = event.target?.closest("li.todo-border")
+  const rootTodoNode = event.target?.closest("li")
 
   const todoId = Number(rootTodoNode.getAttribute("data-id"))
 
@@ -186,7 +183,7 @@ const handleAddTodo = (event) => {
   const { target } = event
 
   const inputEl = findNode(target.parentNode, "INPUT")
-  const rootTodoNode = target?.closest("li.todo-border")
+  const rootTodoNode = target?.closest("li")
   const todoId = rootTodoNode?.getAttribute("data-id")
 
   if (todoId && validateInput(inputEl?.value)) {
