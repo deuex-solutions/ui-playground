@@ -30,12 +30,14 @@ const createTodoNodes = (todo, draggable, includeChildTodos) => {
   const todoTextEl = document.createElement("p")
   todoTextEl.textContent = todo.text
 
-  const deleteTodoBtn = createTodoButton()
-  deleteTodoBtn.innerHTML = "<i class='fas fa-trash'></i>"
+  const deleteTodoBtn = createTodoButton({
+    innerHTML: "<i class='fas fa-trash'></i>",
+  })
   deleteTodoBtn.setAttribute("id", "delete-todo")
 
-  const editTodoBtn = createTodoButton()
-  editTodoBtn.innerHTML = "<i class='fas fa-edit'></i>"
+  const editTodoBtn = createTodoButton({
+    innerHTML: "<i class='fas fa-edit'></i>",
+  })
   editTodoBtn.setAttribute("id", "edit-todo")
 
   const addSubTodoBtn = createTodoButton({ textContent: "Add Sub Todo" })
@@ -59,8 +61,8 @@ const createTodoNodes = (todo, draggable, includeChildTodos) => {
 }
 
 // Toggles a todos' checked and un-checked state
-const toggleTodoCompleted = (targetNode) => {
-  const { nextSibling = null } = targetNode || {}
+const toggleTodoCompleted = (event) => {
+  const { nextSibling = null } = event.target
   const todoId = targetNode?.closest("li.todo-border")?.getAttribute("data-id")
 
   if (todoId) {
@@ -74,8 +76,10 @@ const toggleTodoCompleted = (targetNode) => {
 }
 
 // Deletes a todo from the DOM
-const deleteTodo = (targetNode) => {
-  const todoId = targetNode?.closest("li.todo-border")?.getAttribute("data-id")
+const deleteTodo = (event) => {
+  const { target } = event
+  const todoId = target?.closest("li.todo-border")?.getAttribute("data-id")
+
   if (todoId) {
     const filteredTodos = getFilteredTodos(todos, Number(todoId))
     todos.length = 0
@@ -91,88 +95,76 @@ const deleteTodo = (targetNode) => {
 }
 
 // Creates input todo nodes to edit the current todo
-const renderUpdateTodoNodes = (targetNode) => {
-  const { parentNode = null, previousSibling = "" } = targetNode || {}
+const renderEditTodoNodes = (event) => {
+  const { parentNode = null } = event.target
 
-  const textNode = previousSibling?.previousSibling
+  const textNode = findNode(event.target?.parentNode, "P")
 
-  if (parentNode && textNode?.tagName === "P") {
-    const updateTodoInputEl = createTodoInput({
+  if (textNode) {
+    const containerNode = document.createElement("div")
+    containerNode.classList.add("flex")
+
+    const editTodoInputEl = createTodoInput({
       type: "text",
       value: textNode.textContent,
     })
 
-    const updateTodoBtnEl = createTodoButton({ textContent: "UPDATE" })
-    updateTodoBtnEl.style.marginLeft = "10px"
-    updateTodoBtnEl.setAttribute("id", "update-todo")
+    const editTodoBtn = createTodoButton({
+      innerHTML: "<i class='fas fa-plus'></i>",
+    })
+    editTodoBtn.setAttribute("id", "update-todo")
+    editTodoBtn.style.marginLeft = "10px"
 
-    parentNode.innerHTML = ""
+    const cancelEditBtn = createTodoButton({
+      innerHTML: "<i class='fas fa-times'></i>",
+    })
+    cancelEditBtn.setAttribute("id", "cancel-edit-todo")
 
     const fragment = new DocumentFragment()
-    fragment.append(updateTodoInputEl, updateTodoBtnEl)
+    fragment.append(editTodoInputEl, editTodoBtn, cancelEditBtn)
+    containerNode.appendChild(fragment)
 
-    parentNode.appendChild(fragment)
-  }
-}
-
-// Creates Child Todo items
-const handleCreateChildTodo = (event) => {
-  const currentNode = event.currentTarget
-  const { previousSibling = null, parentNode } = currentNode
-
-  const rootTodoNode = event.currentTarget?.closest("li.todo-border")
-
-  if (validateInput(previousSibling.value) && rootTodoNode) {
-    const currentTodo = todos.find(
-      (todo) => todo.id === Number(rootTodoNode.getAttribute("data-id")),
-    )
-
-    if (currentTodo) {
-      const newTodo = {
-        id: new Date().getSeconds(),
-        text: previousSibling.value,
-        isCompleted: false,
-      }
-      currentTodo.children.push(newTodo)
-
-      render()
-    }
+    parentNode.replaceWith(containerNode)
   }
 }
 
 // Create child todo input items
-const renderCreateChildTodoNodes = (targetNode) => {
-  const { parentNode = null } = targetNode || {}
+const renderCreateSubTodoNodes = (event) => {
+  const rootTodoNode = event.target?.closest("li.todo-border")
 
-  if (parentNode) {
-    const childRoot = document.createElement("div")
-    childRoot.classList.add("todo", "sub-todo-input")
+  const containerChildNode = document.createElement("div")
+  containerChildNode.classList.add("todo", "sub-todo-input")
 
-    const childTodoInputEl = createTodoInput()
-    childTodoInputEl.placeholder = "sub task"
+  const childTodoInputEl = createTodoInput()
+  childTodoInputEl.placeholder = "Sub Task"
 
-    const childTodoBtnEl = createTodoButton({ textContent: "CREATE" })
-    childTodoBtnEl.style.marginLeft = "10px"
-    childTodoBtnEl.setAttribute("id", "create-sub-todo")
-    childTodoBtnEl.addEventListener("click", handleCreateChildTodo)
+  const addChildTodoBtn = createTodoButton({
+    innerHTML: "<i class='fas fa-plus'></i>",
+  })
+  addChildTodoBtn.disabled = true
+  addChildTodoBtn.style.marginLeft = "10px"
+  addChildTodoBtn.setAttribute("id", "add-sub-todo")
 
-    const fragment = new DocumentFragment()
-    fragment.append(childTodoInputEl, childTodoBtnEl)
+  const cancelChildTodoBtn = createTodoButton({
+    innerHTML: "<i class='fas fa-times'></i>",
+  })
+  cancelChildTodoBtn.setAttribute("id", "cancel-sub-todo")
 
-    childRoot.appendChild(fragment)
+  const fragment = new DocumentFragment()
+  fragment.append(childTodoInputEl, addChildTodoBtn, cancelChildTodoBtn)
 
-    const todoRootNode = parentNode.parentNode
-    todoRootNode.appendChild(childRoot)
-  }
+  containerChildNode.appendChild(fragment)
+
+  rootTodoNode.appendChild(containerChildNode)
 }
 
 // Updates the current todo and attaches into the DOM
-const handleUpdateTodo = (targetNode) => {
-  const { previousSibling = null } = targetNode || {}
-
-  const rootTodoNode = targetNode?.closest("li.todo-border")
+const handleEditTodo = (event) => {
+  const { previousSibling = null } = event.target
+  const rootTodoNode = event.target?.closest("li.todo-border")
 
   const todoId = Number(rootTodoNode.getAttribute("data-id"))
+
   if (validateInput(previousSibling.value) && todoId) {
     const currentTodo = findTodo(todos, Number(todoId))
 
@@ -185,8 +177,25 @@ const handleUpdateTodo = (targetNode) => {
 }
 
 // Adds todos nodes into the DOM
-const handleAddTodo = () => {
-  if (validateInput(inputEl.value)) {
+const handleAddTodo = (event) => {
+  const { target } = event
+
+  const inputEl = findNode(target.parentNode, "INPUT")
+  const rootTodoNode = target?.closest("li.todo-border")
+  const todoId = rootTodoNode?.getAttribute("data-id")
+
+  if (todoId && validateInput(inputEl?.value)) {
+    const currentTodo = findTodo(todos, Number(todoId))
+
+    if (currentTodo) {
+      const newTodo = {
+        id: new Date().getSeconds(),
+        text: inputEl.value,
+        isCompleted: false,
+      }
+      currentTodo.children.push(newTodo)
+    }
+  } else {
     const todo = {
       id: new Date().getSeconds(),
       text: inputEl.value,
@@ -200,10 +209,11 @@ const handleAddTodo = () => {
     cardContainer.classList.add("padding-xs")
     noTodoText.classList.add("d-none")
     inputEl.value = ""
+    target.disabled = true
 
     todoWrapper.innerHTML = ""
-    render()
   }
+  render()
 }
 
 // Clear all todos
@@ -216,42 +226,9 @@ const clearAllTodos = () => {
   cardContainer.classList.add("d-none")
 }
 
-// Delegated click listener to handle clicks on various todo nodes
-const handleOnTodoClick = (event) => {
-  const { tagName, id, type } = event.target
-
-  if (tagName === "INPUT" && type === "checkbox") {
-    event.stopPropagation()
-    return toggleTodoCompleted(event.target)
-  }
-
-  if (tagName === "BUTTON") {
-    if (id === "delete-todo") {
-      event.stopPropagation()
-      return deleteTodo(event.target)
-    }
-    if (id === "edit-todo") {
-      event.stopPropagation()
-      return renderUpdateTodoNodes(event.target)
-    }
-
-    if (id === "update-todo") {
-      event.stopPropagation()
-      return handleUpdateTodo(event.target)
-    }
-
-    if (id === "sub-todo") {
-      event.stopPropagation()
-      return renderCreateChildTodoNodes(event.target)
-    }
-
-    if (id === "clear") {
-      return clearAllTodos()
-    }
-    if (id === "mark-complete") {
-      return handleMarkAllComplete()
-    }
-  }
+const removeTodoNodes = () => {
+  todoWrapper.innerHTML = ""
+  render()
 }
 
 // Renders todos into the DOM
@@ -277,13 +254,13 @@ const render = (
 
 // Handle add todo button disabled status on input change
 const handleInputChange = (event) => {
-  const { value = "", nextSibling } = event.target
-  const submitButton = nextSibling.nextSibling
+  const { value = "", parentNode } = event.target
+  const btnEl = findNode(parentNode, "BUTTON")
 
-  if (submitButton && validateInput(value)) {
-    submitButton.disabled = false
+  if (btnEl && validateInput(value)) {
+    btnEl.disabled = false
   } else {
-    submitButton.disabled = true
+    btnEl.disabled = true
   }
 }
 
@@ -294,6 +271,40 @@ const handleMarkAllComplete = () => {
   todos.push(...completedTodos)
   todoWrapper.innerHTML = ""
   render()
+}
+
+// Delegated event handler for click events
+const handleTodoClick = (event) => {
+  const { tagName, id, type } = event.target
+
+  if (tagName === "INPUT" && type === "checkbox") {
+    return toggleTodoCompleted(event)
+  } else {
+    if (tagName === "BUTTON") {
+      switch (id) {
+        case "add-sub-todo":
+          return handleAddTodo(event)
+        case "add-todo":
+          return handleAddTodo(event)
+        case "delete-todo":
+          return deleteTodo(event)
+        case "edit-todo":
+          return renderEditTodoNodes(event)
+        case "update-todo":
+          return handleEditTodo(event)
+        case "sub-todo":
+          return renderCreateSubTodoNodes(event)
+        case "cancel-sub-todo":
+          return removeTodoNodes(event)
+        case "cancel-edit-todo":
+          return removeTodoNodes(event)
+        case "clear":
+          return clearAllTodos()
+        case "mark-complete":
+          return handleMarkAllComplete()
+      }
+    }
+  }
 }
 
 // event listeners attached
