@@ -47,7 +47,6 @@ const markTodosComplete = (todos = []) => {
 const findNode = (parentNode = {}, tagName = "") => {
   let resultNode
   parentNode?.childNodes?.forEach((nodeItem) => {
-    console.log({ parentNode, tagName })
     if (!resultNode && nodeItem.tagName === tagName) {
       resultNode = nodeItem
     }

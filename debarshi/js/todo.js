@@ -29,6 +29,9 @@ const createTodoNodes = (todo, draggable, includeChildTodos) => {
 
   const todoTextEl = document.createElement("p")
   todoTextEl.textContent = todo.text
+  if (todo.isCompleted) {
+    todoTextEl.classList.add("text-through")
+  }
 
   const deleteTodoBtn = createTodoButton({
     innerHTML: "<i class='fas fa-trash'></i>",
@@ -63,7 +66,9 @@ const createTodoNodes = (todo, draggable, includeChildTodos) => {
 // Toggles a todos' checked and un-checked state
 const toggleTodoCompleted = (event) => {
   const { nextSibling = null } = event.target
-  const todoId = targetNode?.closest("li.todo-border")?.getAttribute("data-id")
+  const todoId = event.target
+    ?.closest("li.todo-border")
+    ?.getAttribute("data-id")
 
   if (todoId) {
     const currentTodo = findTodo(todos, Number(todoId))
