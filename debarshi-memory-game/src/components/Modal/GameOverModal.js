@@ -1,23 +1,17 @@
 import { Box, Button, Typography } from '@mui/material'
-import { modals } from 'constants/modals'
 import { useCardContext } from 'contexts/CardContext'
-import { useModalContext } from 'contexts/ModalContext'
 import { boxStyles } from 'styles/styles'
 import Modal from './Modal'
 
-const GameOverModal = ({ onReset }) => {
+const GameOverModal = ({ open, onReset, onClose }) => {
   const { points } = useCardContext()
-  const { state, dispatch } = useModalContext()
-
-  const handleModal = (modalType) => dispatch({ type: modalType })
 
   const handleOnClick = () => {
     onReset()
-    handleModal(modals.START_MODAL)
   }
 
   return (
-    <Modal open={state.modal === modals.END_MODAL} onClose={() => handleModal(modals.END_MODAL)}>
+    <Modal open={open} onClose={onClose}>
       <Box sx={boxStyles}>
         <Typography component="h4" variant="h4" align="center" sx={{ marginBottom: '1rem' }}>
           GAME OVER
@@ -34,7 +28,9 @@ const GameOverModal = ({ onReset }) => {
 }
 
 GameOverModal.defaultProps = {
+  open: false,
   onStart: () => null,
+  onClose: () => null,
 }
 
 export default GameOverModal

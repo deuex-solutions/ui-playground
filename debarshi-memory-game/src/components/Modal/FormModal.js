@@ -1,31 +1,82 @@
-import { Box, Button, TextField, Typography } from '@mui/material'
-import { modals } from 'constants/modals'
-import { useModalContext } from 'contexts/ModalContext'
-import { useRef } from 'react'
+import {
+  Box,
+  Button,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  TextField,
+  Typography,
+} from '@mui/material'
+import levels from 'constants/levels'
+import { useCardContext } from 'contexts/CardContext'
+import { useRef, useState } from 'react'
 import { boxStyles } from 'styles/styles'
 import Modal from './Modal'
 
-const FormModal = ({ onStart }) => {
-  const inputRef = useRef()
-  const { state, dispatch } = useModalContext()
+const rules = [
+  'Click on card to flip',
+  'Find match for same card',
+  "You'll get 5 minutes to answer",
+  '10 Marks for correct answer',
+  "At the end of the game, you'll see your final score",
+]
 
-  const handleModal = (modalType) => dispatch({ type: modalType })
+const FormModal = ({ open, onStart, onClose }) => {
+  const [gameLevel, setGameLevel] = useState(levels.EASY)
+  const inputRef = useRef()
+
+  const { onLevelChange } = useCardContext()
 
   const handleOnClick = () => {
     if (inputRef.current.value !== '') {
       onStart(inputRef.current.value)
-      handleModal(null)
       inputRef.current.value = ''
     }
   }
+
+  const handleOnLevelChange = (event) => {
+    const { value } = event.target
+    onLevelChange(value)
+    setGameLevel(value)
+  }
+
   return (
-    <Modal open={state.modal === modals.START_MODAL} onClose={handleModal}>
+    <Modal open={open} onClose={onClose}>
       <Box sx={boxStyles}>
-        <Typography component="p" variant="p" align="center" sx={{ marginBottom: '1rem' }}>
-          Enter your name to start the game
+        <Typography component="h5" variant="h5" align="center">
+          Rules
         </Typography>
-        <TextField label="Enter your name" variant="outlined" fullWidth inputRef={inputRef} />
-        <Button variant="outlined" fullWidth sx={{ marginTop: '1rem' }} onClick={handleOnClick}>
+
+        {rules.map((rule, idx) => (
+          <Typography key={idx} component="h5" variant="body2" align="left">
+            {rule}
+          </Typography>
+        ))}
+
+        <TextField
+          label="Enter your name"
+          variant="outlined"
+          fullWidth
+          inputRef={inputRef}
+          sx={{ marginTop: '0.6rem' }}
+        />
+
+        <FormControl fullWidth sx={{ marginTop: '0.6rem' }}>
+          <InputLabel id="select-game-label">Select Level</InputLabel>
+          <Select
+            labelId="select-game-label"
+            label="Select Level"
+            value={gameLevel}
+            onChange={handleOnLevelChange}
+          >
+            <MenuItem value={levels.EASY}>Easy</MenuItem>
+            <MenuItem value={levels.MEDIUM}>Medium</MenuItem>
+            <MenuItem value={levels.HARD}>Hard</MenuItem>
+          </Select>
+        </FormControl>
+
+        <Button variant="outlined" fullWidth sx={{ marginTop: '0.6rem' }} onClick={handleOnClick}>
           Start
         </Button>
       </Box>
@@ -34,6 +85,8 @@ const FormModal = ({ onStart }) => {
 }
 
 FormModal.defaultProps = {
+  open: false,
   onStart: () => null,
+  onClose: () => null,
 }
 export default FormModal
