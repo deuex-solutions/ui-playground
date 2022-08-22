@@ -7,29 +7,30 @@ const validateInput = (value = "") => {
 
 const getFilteredTodos = (todos = [], todoId) => {
   const result = []
-  todos.forEach((todoItem) => {
-    if (todoItem?.children?.length > 0) {
-      const subArr = getFilteredTodos(todoItem.children, todoId)
-      todoItem.children = subArr
+  for (let todo of todos) {
+    if (todo?.children?.length > 0) {
+      const subArr = getFilteredTodos(todo.children, todoId)
+      todo.children = subArr
     }
-    if (todoItem.id !== todoId) {
-      result.push(todoItem)
+    if (todo.id !== todoId) {
+      result.push(todo)
     }
-  })
+  }
+
   return result
 }
 
 const findTodo = (todos = [], todoId) => {
   let searchedTodo
 
-  todos.forEach((todoItem) => {
-    if (!searchedTodo && todoItem?.children?.length > 0) {
-      searchedTodo = findTodo(todoItem.children, todoId)
+  for (let todo of todos) {
+    if (!searchedTodo && todo?.children?.length > 0) {
+      searchedTodo = findTodo(todo.children, todoId)
     }
-    if (todoItem.id === todoId) {
-      searchedTodo = todoItem
+    if (todo.id === todoId) {
+      searchedTodo = todo
     }
-  })
+  }
 
   return searchedTodo
 }
@@ -46,6 +47,7 @@ const markTodosComplete = (todos = []) => {
 
 const findNode = (parentNode = {}, tagName = "") => {
   let resultNode
+
   parentNode?.childNodes?.forEach((nodeItem) => {
     if (!resultNode && nodeItem.tagName === tagName) {
       resultNode = nodeItem

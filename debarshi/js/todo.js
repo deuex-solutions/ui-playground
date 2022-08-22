@@ -245,7 +245,7 @@ const render = (
 ) => {
   const docFragment = new DocumentFragment()
 
-  items.forEach((todo) => {
+  for (let todo of items) {
     const todoNode = createTodoNodes(todo, draggable, includeChildTodos)
 
     if (todo?.children?.length) {
@@ -253,7 +253,8 @@ const render = (
       render(todoNode, todo.children, false, false)
     }
     docFragment.appendChild(todoNode)
-  })
+  }
+
   parentNode.appendChild(docFragment)
 }
 
