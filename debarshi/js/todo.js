@@ -1,5 +1,5 @@
 import todos from "./constant.js"
-
+import { cardContainer, mainEl, noTodoText, todoWrapper } from "./selectors.js"
 import {
   createTodoBase,
   createTodoRoot,
@@ -9,13 +9,7 @@ import {
 } from "./components/index.js"
 
 import {
-  inputEl,
-  cardContainer,
-  addTodoBtn,
-  noTodoText,
-  todoWrapper,
-} from "./selectors.js"
-import {
+  findNode,
   findTodo,
   getFilteredTodos,
   markTodosComplete,
@@ -303,8 +297,7 @@ const handleMarkAllComplete = () => {
 }
 
 // event listeners attached
-addTodoBtn.addEventListener("click", handleAddTodo)
-cardContainer.addEventListener("click", handleOnTodoClick)
-inputEl.addEventListener("keyup", handleInputChange)
+mainEl.addEventListener("keyup", handleInputChange)
+mainEl.addEventListener("click", handleTodoClick)
 
 export default render
