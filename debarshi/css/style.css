@@ -42,20 +42,19 @@ body li {
   align-items: center;
 }
 .input-container > input {
-  padding: 10px;
+  padding: 0.5rem 0.8rem;
   width: 100%;
   outline: none;
   font-size: 1.15rem;
   border: 0;
 }
 .input-container > button {
-  padding: 0 1.2rem;
+  padding-right: 1rem;
   background: transparent;
   border: 0;
   color: var(--secondary-color);
   font-weight: 600;
   font-size: 1.05rem;
-  margin-right: 8px;
   cursor: pointer;
 }
 
@@ -98,6 +97,7 @@ body li {
   display: flex;
   width: 100%;
   align-items: center;
+  position: relative;
 }
 
 .todo.sub-todo-input {
@@ -108,7 +108,7 @@ body li {
   border-bottom: 1px solid var(--border-color);
 }
 
-.todo button {
+button {
   padding: 0 10px;
 }
 .todo button:disabled {
@@ -120,7 +120,7 @@ body li {
   margin-right: 8px;
   cursor: pointer;
 }
-.todo input[type="text"] {
+.todo-border input[type="text"] {
   padding: 6px;
   flex: 1;
   outline: none;
@@ -183,4 +183,8 @@ p.text-through {
 
 .padding-top-0 {
   padding-top: 0;
+}
+.flex {
+  display: flex;
+  align-items: center;
 }
