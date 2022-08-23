@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Toaster } from 'react-hot-toast'
-import { Box, Grid, Typography } from '@mui/material'
+import { Box, Button, Grid, Typography } from '@mui/material'
 import { useCardContext } from 'contexts/CardContext'
 import { Card, FormModal, GameOverModal, Timer } from 'components'
 import { modals } from 'constants/modals'
@@ -40,12 +40,21 @@ const App = () => {
       {!state.modal && <Timer onExpire={() => dispatch({ type: modals.END_MODAL })} />}
 
       <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-        <Typography component="h6" variant="body1" align="left" fontSize="1.25rem">
-          Player: {username}
-        </Typography>
-        <Typography component="h6" variant="body1" align="right" fontSize="1.25rem">
-          Points: {points}
-        </Typography>
+        <div>
+          <Typography component="h6" variant="body1" align="left">
+            Player: {username}
+          </Typography>
+          <Typography component="h6" variant="body1" align="left">
+            Points: {points}
+          </Typography>
+        </div>
+        <Button
+          variant="outlined"
+          onClick={resetGame}
+          sx={{ padding: '0.3rem 1rem', fontSize: '0.8rem' }}
+        >
+          Re-start
+        </Button>
       </Box>
 
       <FormModal onStart={handleStart} open={state.modal === modals.START_MODAL} />
