@@ -33,17 +33,17 @@ const App = () => {
 
   return (
     <div className="app">
-      <Typography component="h3" variant="h3" align="center" sx={{ marginTop: '1rem' }}>
+      <Typography component="h4" variant="h4" align="center" fontSize="1.25rem" mt="1rem">
         Memory Game
       </Typography>
 
       {!state.modal && <Timer onExpire={() => dispatch({ type: modals.END_MODAL })} />}
 
       <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-        <Typography component="h6" variant="h6" align="left">
+        <Typography component="h6" variant="body1" align="left" fontSize="1.25rem">
           Player: {username}
         </Typography>
-        <Typography component="h6" variant="h6" align="left">
+        <Typography component="h6" variant="body1" align="right" fontSize="1.25rem">
           Points: {points}
         </Typography>
       </Box>

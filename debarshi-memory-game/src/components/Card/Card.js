@@ -29,13 +29,16 @@ const Card = ({ card, flip, onClick, initialFlip }) => {
     <MuiCard
       key={card.id}
       className={cn('card', { flip: flip || showCards, 'd-none': card.isMatch })}
-      onClick={() => onClick(card)}
+      onClick={() => {
+        setShowCards(true)
+        onClick(card)
+      }}
     >
       <Box className="front-card">
         <CardMedia component="img" alt="card" image={card.src} sx={{ height: '100%' }} />
       </Box>
       <Box className="back-card">
-        <Typography align="center" variant="h5">
+        <Typography align="center" variant="body1">
           Flip
         </Typography>
       </Box>

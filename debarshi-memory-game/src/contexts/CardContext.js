@@ -25,15 +25,14 @@ const CardContextProvider = ({ children }) => {
   useEffect(() => {
     if (selectedCards?.first && selectedCards?.second) {
       if (selectedCards.first?.src === selectedCards.second?.src) {
-        setCardList((prevList) => {
-          return prevList.map((card) => {
+        setCardList((prevList) =>
+          prevList.map((card) => {
             if (card.src === selectedCards.first.src) {
               return { ...card, isMatch: true }
             }
             return card
           })
-        })
-        setSelectedCards({})
+        )
         updatePoints()
       } else {
         setTimeout(() => {
@@ -41,25 +40,25 @@ const CardContextProvider = ({ children }) => {
         }, 900)
       }
     }
-  }, [cardList, selectedCards.first, selectedCards.second])
+  }, [selectedCards?.first, selectedCards?.second])
 
-  const onCardSelected = useCallback(
-    (card) => {
-      if (selectedCards?.first && selectedCards.first.id !== card.id) {
-        setSelectedCards({
-          ...selectedCards,
+  const onCardSelected = useCallback((card) => {
+    setSelectedCards((prevCards) => {
+      if (prevCards?.first && prevCards.first.id !== card.id) {
+        return {
+          ...prevCards,
           second: { ...card },
-        })
-      } else {
-        setSelectedCards({ first: { ...card } })
+        }
       }
-      setTurns((prev) => prev + 1)
-    },
-    [selectedCards]
-  )
+      return { first: { ...card } }
+    })
+
+    setTurns((prev) => prev + 1)
+  }, [])
 
   const updatePoints = () => {
     setPoints((prev) => prev + 10)
+    setSelectedCards({})
     toast.success('Correct Answer', { duration: 1500 })
   }
 
@@ -74,21 +73,17 @@ const CardContextProvider = ({ children }) => {
 
   const onLevelChange = useCallback(
     (currentLevel) => {
-      const { EASY, HARD, MEDIUM } = gameLevels
+      const { HARD, MEDIUM } = gameLevels
 
-      let cards
-      if (currentLevel === EASY) {
-        cards = getShuffledCards(4)
-      }
-      if (currentLevel === MEDIUM) {
-        cards = getShuffledCards(2)
-      }
       if (currentLevel === HARD) {
-        cards = getShuffledCards(0)
+        const cards = getShuffledCards(0)
+        setCardList([...cards])
+      } else if (currentLevel === MEDIUM) {
+        setCardList(getShuffledCards(2))
+      } else {
+        setCardList(getShuffledCards(4))
       }
-
       reset(false)
-      setCardList(cards)
     },
     [reset]
   )
