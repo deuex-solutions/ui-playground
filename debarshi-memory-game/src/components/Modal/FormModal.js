@@ -16,7 +16,7 @@ import Modal from './Modal'
 
 const rules = [
   'Click on card to flip',
-  'Find match for same card',
+  'Find the match for current open card',
   "You'll get 5 minutes to answer",
   '10 Marks for correct answer',
   "At the end of the game, you'll see your final score",

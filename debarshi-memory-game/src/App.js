@@ -48,13 +48,18 @@ const App = () => {
             Points: {points}
           </Typography>
         </div>
-        <Button
-          variant="outlined"
-          onClick={resetGame}
-          sx={{ padding: '0.3rem 1rem', fontSize: '0.8rem' }}
-        >
-          Re-start
-        </Button>
+        <div>
+          <Typography component="h6" variant="body1" align="center">
+            Turns left: {cardList.length - turns}
+          </Typography>
+          <Button
+            variant="outlined"
+            onClick={resetGame}
+            sx={{ padding: '0.3rem 1rem', fontSize: '0.8rem' }}
+          >
+            Re-start
+          </Button>
+        </div>
       </Box>
 
       <FormModal onStart={handleStart} open={state.modal === modals.START_MODAL} />
