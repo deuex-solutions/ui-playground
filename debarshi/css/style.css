@@ -32,7 +32,7 @@ body li {
 }
 .container {
   margin: 0 auto;
-  max-width: 25rem;
+  max-width: 35rem;
 }
 
 .input-container {
@@ -92,7 +92,7 @@ body li {
 
 .todo.sub-todo-input {
   padding-top: 1rem;
-  padding-left: 10px;
+  padding-left: 1.2rem;
 }
 
 button {
@@ -128,7 +128,7 @@ p.text-through {
 }
 
 .sub-todo {
-  padding-left: 10px;
+  padding-left: 1.2rem;
 }
 
 .action-container {

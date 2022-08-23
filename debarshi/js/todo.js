@@ -112,7 +112,7 @@ const renderEditTodoNodes = (event) => {
     })
 
     const editTodoBtn = createTodoButton({
-      innerHTML: "<i class='fas fa-plus'></i>",
+      innerHTML: "<i class='fas fa-check'></i>",
     })
     editTodoBtn.setAttribute("id", "update-todo")
     editTodoBtn.style.marginLeft = "10px"
@@ -141,7 +141,7 @@ const renderCreateSubTodoNodes = (event) => {
   childTodoInputEl.placeholder = "Sub Task"
 
   const addChildTodoBtn = createTodoButton({
-    innerHTML: "<i class='fas fa-plus'></i>",
+    innerHTML: "<i class='fas fa-check'></i>",
   })
   addChildTodoBtn.disabled = true
   addChildTodoBtn.style.marginLeft = "10px"
