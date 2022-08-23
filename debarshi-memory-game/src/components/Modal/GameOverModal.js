@@ -1,6 +1,6 @@
 import { Box, Button, Typography } from '@mui/material'
 import { useCardContext } from 'contexts/CardContext'
-import { boxStyles } from 'styles/styles'
+import { boxStyles } from 'styles/baseStyles'
 import Modal from './Modal'
 
 const GameOverModal = ({ open, onReset, onClose }) => {

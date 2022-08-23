@@ -51,18 +51,20 @@ const App = () => {
       <FormModal onStart={handleStart} open={state.modal === modals.START_MODAL} />
       <GameOverModal onReset={resetGame} open={state.modal === modals.END_MODAL} />
 
-      <Grid container columns={{ xs: 4, sm: 8, md: 12 }} spacing={2} sx={{ marginBottom: '2rem' }}>
-        {cardList.map((card) => (
-          <Grid item xs={2} sm={4} md={3} key={card.id}>
-            <Card
-              card={card}
-              initialFlip={!state.modal}
-              flip={card.id === selectedCards?.first?.id || card.id === selectedCards?.second?.id}
-              onClick={handleOnCardClick}
-            />
-          </Grid>
-        ))}
-      </Grid>
+      <Box sx={{ margin: '1rem 0 2rem 0' }}>
+        <Grid container columns={{ xs: 4, sm: 8, md: 12 }} spacing={2}>
+          {cardList.map((card) => (
+            <Grid item xs={2} sm={4} md={3} key={card.id}>
+              <Card
+                card={card}
+                initialFlip={!state.modal}
+                flip={card.id === selectedCards?.first?.id || card.id === selectedCards?.second?.id}
+                onClick={handleOnCardClick}
+              />
+            </Grid>
+          ))}
+        </Grid>
+      </Box>
       <Toaster />
     </div>
   )

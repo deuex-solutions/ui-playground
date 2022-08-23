@@ -11,7 +11,7 @@ import {
 import levels from 'constants/levels'
 import { useCardContext } from 'contexts/CardContext'
 import { useRef, useState } from 'react'
-import { boxStyles } from 'styles/styles'
+import { boxStyles } from 'styles/baseStyles'
 import Modal from './Modal'
 
 const rules = [
