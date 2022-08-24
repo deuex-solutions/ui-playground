@@ -9,9 +9,9 @@ interface Props {
 
 const Card: React.FC<Props> = ({ value, idx, onClick }) => {
   return (
-    <div role="button" aria-hidden className="card" onClick={() => onClick(idx)}>
+    <button type="button" className="card" onClick={() => onClick(idx)}>
       {value}
-    </div>
+    </button>
   )
 }
 
