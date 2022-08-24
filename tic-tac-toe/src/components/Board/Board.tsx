@@ -4,7 +4,6 @@ import './Board.css'
 
 interface Props {
   selectedChoice: string
-  onStatusChange: (message: string) => void
   onReset: () => void
 }
 
@@ -32,10 +31,36 @@ const checkWinner = (cards: string[]) => {
 
 const getEmptyCards = () => new Array<string>(9).fill('')
 
-const Board: React.FC<Props> = ({ selectedChoice, onStatusChange, onReset }) => {
+const Board: React.FC<Props> = ({ selectedChoice, onReset }) => {
   const [cards, setCards] = useState<string[]>(getEmptyCards)
-  const [isX, setIsX] = useState<boolean>(false)
+  const [currentPlayer, setCurrentPlayer] = useState<string>('')
+  const [status, setStatus] = useState<string>('')
   const [moves, setMoves] = useState(0)
+
+  useEffect(() => {
+    setCurrentPlayer(selectedChoice)
+  }, [selectedChoice])
+
+  useEffect(() => {
+    const winner = checkWinner(cards)
+    if (winner) {
+      setStatus(`Winner is ${winner}`)
+    } else if (!winner && moves === cards.length) {
+      setStatus('Match Draw')
+    } else if (currentPlayer) {
+      setStatus(`Player ${currentPlayer}'s turn`)
+    }
+  }, [cards, moves, currentPlayer])
+
+  const handleOnClick = (idx: number) => {
+    if (cards[idx] || checkWinner(cards)) return
+
+    const duplicateCards: string[] = [...cards]
+    duplicateCards[idx] = currentPlayer
+    setCards([...duplicateCards])
+    setMoves(moves + 1)
+    setCurrentPlayer(currentPlayer === 'X' ? '0' : 'X')
+  }
 
   const handleReset = useCallback(() => {
     setCards([...getEmptyCards()])
@@ -43,39 +68,9 @@ const Board: React.FC<Props> = ({ selectedChoice, onStatusChange, onReset }) => 
     onReset()
   }, [onReset])
 
-  useEffect(() => {
-    if (selectedChoice === 'X') {
-      setIsX(true)
-    } else {
-      setIsX(false)
-    }
-  }, [selectedChoice])
-
-  useEffect(() => {
-    const winner = checkWinner(cards)
-    if (winner) {
-      onStatusChange(`Winner is ${winner}`)
-    } else if (moves === cards.length && !winner) {
-      onStatusChange('Match Draw')
-    } else {
-      const playerTurn = isX ? 'X' : '0'
-      onStatusChange(`Player ${playerTurn}'s turn`)
-    }
-  }, [cards, handleReset, isX, moves, onStatusChange])
-
-  const handleOnClick = (idx: number) => {
-    if (cards[idx] || checkWinner(cards)) return
-
-    const duplicateCards: string[] = [...cards]
-    duplicateCards[idx] = !isX ? '0' : 'X'
-
-    setCards([...duplicateCards])
-    setIsX(!isX)
-    setMoves(moves + 1)
-  }
-
   return (
     <div className="board-container">
+      <h3 className="text-center">{status}</h3>
       <button type="button" className="text-button" onClick={handleReset}>
         Restart
       </button>
