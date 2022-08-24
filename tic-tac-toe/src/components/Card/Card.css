@@ -6,6 +6,3 @@
   justify-content: center;
   font-size: 2rem;
 }
-.card.card:first-child {
-  border: 0 0 1px solid black 0;
-}
