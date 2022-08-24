@@ -40,11 +40,9 @@ body {
   background-color: transparent;
   border: 1px solid var(--primary-color);
   border-radius: 4px;
-  margin-left: auto;
   color: var(--primary-color);
   padding: 0.5rem 1rem;
   font-size: 1rem;
-  margin-bottom: 0.5rem;
   cursor: pointer;
 }
 .text-center {

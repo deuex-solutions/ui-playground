@@ -70,10 +70,12 @@ const Board: React.FC<Props> = ({ selectedChoice, onReset }) => {
 
   return (
     <div className="board-container">
-      <h3 className="text-center">{status}</h3>
-      <button type="button" className="text-button" onClick={handleReset}>
-        Restart
-      </button>
+      <div className="flex align-center">
+        <button type="button" className="text-button" onClick={handleReset}>
+          Restart
+        </button>
+        <h3 className="text-center">{status}</h3>
+      </div>
       <div className="board-grid">
         {getEmptyCards().map((_, idx) => (
           <Card key={idx} value={cards[idx]} idx={idx} onClick={handleOnClick} />
