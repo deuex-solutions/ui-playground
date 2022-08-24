@@ -12,7 +12,7 @@
 }
 
 .modal-label input[type='radio'] {
-  margin-left: 10px;
+  margin: 0 6px;
 }
 .modal-button {
   padding: 0.8rem;

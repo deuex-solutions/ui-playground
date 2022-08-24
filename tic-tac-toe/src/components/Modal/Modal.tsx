@@ -10,6 +10,8 @@ interface Props {
   onChoiceChange: (choice: string) => void
 }
 
+ReactModal.setAppElement('#root')
+
 const Modal: React.FC<Props> = ({ isOpen, selectedChoice, onClose, onStart, onChoiceChange }) => {
   const nameRef = useRef<HTMLInputElement | null>(null)
 
