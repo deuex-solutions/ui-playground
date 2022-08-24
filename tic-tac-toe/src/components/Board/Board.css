@@ -1,0 +1,22 @@
+.board-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  max-width: 70%;
+  margin: 1rem auto;
+  width: 100%;
+}
+
+.board-container {
+  width: 100%;
+}
+
+.board-container h3 {
+  width: 100%;
+  padding-right: 4rem;
+}
+
+@media screen and (max-width: 428px) {
+  .board-grid {
+    max-width: 100%;
+  }
+}

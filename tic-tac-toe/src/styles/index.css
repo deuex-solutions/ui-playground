@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&display=swap');
+
+:root {
+  --primary-color: rgb(148, 148, 226);
+  --primary-text-color: #fff;
+  --secondary-text-color: #000;
+  --primary-color-hover: rgb(130, 130, 219);
+}
+body {
+  margin: 0;
+  font-family: 'Open Sans', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+    'Droid Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 70%;
+  min-height: calc(100vh - 1rem);
+  margin: 0 auto;
+}
+
+.header-wrapper {
+  margin: 1rem 0;
+}
+
+.grid-wrapper {
+  min-height: calc(70vh - 1rem);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.text-button {
+  min-width: 4rem;
+  background-color: transparent;
+  border: 1px solid var(--primary-color);
+  border-radius: 4px;
+  color: var(--primary-color);
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+}
+.text-center {
+  text-align: center;
+}
+
+.flex {
+  display: flex;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.font-500 {
+  font-weight: 500;
+}
+
+.text-primary {
+  color: var(--primary-color);
+}
+
+@media screen and (max-width: 428px) {
+  .container {
+    max-width: 95%;
+  }
+}
