@@ -1,4 +1,17 @@
 .board-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  max-width: 70%;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.board-container {
+  width: 100%;
+}
+
+@media screen and (max-width: 428px) {
+  .board-grid {
+    max-width: 100%;
+  }
 }
