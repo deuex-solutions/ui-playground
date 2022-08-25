@@ -1,0 +1,20 @@
+:root {
+  --dark-shadow: #29455a;
+  --light-shadow: #b5c2c2;
+  --primary: #ffffff;
+  --secondary: #1C8B8D;
+  --accent-bhagwa: #17224D;
+  --accent-red: #610808;
+  --gradient: linear-gradient(
+    to right,
+    var(--accent-bhagwa) 30%,
+    var(--accent-red) 50%
+  );
+  --glass-gradient: linear-gradient(
+    to right bottom,
+    /* rgba(257, 257, 257, 0.3), */
+    rgba(240, 240, 240, 0.2),
+    rgba(24, 192, 75, 0.2),
+    rgba(197, 17, 62, 0.2)
+  );
+}
