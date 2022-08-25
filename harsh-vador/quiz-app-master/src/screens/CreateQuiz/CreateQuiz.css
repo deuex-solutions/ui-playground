@@ -13,7 +13,6 @@
 }
 .quiz-header {
   padding: 20px;
-  /* margin-top: 50px; */
   margin: 30px 0px 10px 0px;
   border: none;
   border-top: 25px solid var(--accent-pink);
@@ -62,14 +61,12 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  /* padding: 20%; */
 }
 .questionTable {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  /* padding: 0 0%; */
 }
 #add-btn:hover,
 #create-btn:hover {

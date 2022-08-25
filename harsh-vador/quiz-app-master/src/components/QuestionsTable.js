@@ -153,7 +153,6 @@ const EnhancedTableToolbar = (props) => {
 
   const deleteRow = () => {
     const temp = [...questionArray];
-    // Delete the selected rows from QuestionsArray
     selected.forEach((element) => {
       const target = temp.findIndex((e) => e.title === element);
       temp.splice(target, 1);
@@ -287,11 +286,6 @@ export default function QuestionsTable({ questionArray, setQuestionArray }) {
     setPage(newPage);
   };
 
-  // const handleChangeRowsPerPage = (event) => {
-  // 	setRowsPerPage(parseInt(event.target.value, 10));
-  // 	setPage(0);
-  // };
-
   const isSelected = (name) => selected.indexOf(name) !== -1;
 
   const emptyRows =
@@ -387,7 +381,6 @@ export default function QuestionsTable({ questionArray, setQuestionArray }) {
           rowsPerPage={rowsPerPage}
           page={page}
           onChangePage={handleChangePage}
-          // onChangeRowsPerPage={handleChangeRowsPerPage}
         />
       </Paper>
     </div>

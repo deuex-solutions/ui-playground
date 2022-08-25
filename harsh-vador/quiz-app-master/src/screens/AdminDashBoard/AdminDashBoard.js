@@ -10,7 +10,6 @@ const AdminDashBoard = ({ user }) => {
   const [attemptedQuizzes, setAttemptedQuizzes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [editQuiz, setEditQuiz] = useState([]);
-  // Fetch Data from the API
   useEffect(() => {
     if (!user.uid) {
       setLoading(false);

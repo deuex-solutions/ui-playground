@@ -61,7 +61,6 @@ const AttemptQuiz = ({ match }) => {
   };
 
   const submitQuiz = async () => {
-    // send attemped Questions to backend
     try {
       const res = await fetch("/API/quizzes/submit", {
         method: "POST",
@@ -85,7 +84,6 @@ const AttemptQuiz = ({ match }) => {
   };
 
   if (loading) return <LoadingScreen />;
-  // For Quiz not Found
   if (quizTitle === "ERR:QUIZ_NOT_FOUND")
     return (
       <div className="loading">
@@ -98,7 +96,6 @@ const AttemptQuiz = ({ match }) => {
         </h3>
       </div>
     );
-  // For Quiz not accessible
   else if (quizTitle === "ERR:QUIZ_ACCESS_DENIED")
     return (
       <div className="loading">

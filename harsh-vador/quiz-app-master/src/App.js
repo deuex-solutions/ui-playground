@@ -1,11 +1,8 @@
 import { Switch, Route } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import firebase from "./firebase/firebase";
-
-// Stylesheet
 import "./App.css";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
-// Components
 import Home from "./screens/Home/Home";
 import OneTimeDashBoard from "./screens/OneTimeDashboard/OneTimeDashboard";
 import CreateQuiz from "./screens/CreateQuiz/CreateQuiz";

@@ -15,7 +15,6 @@ DBStart();
 const withDB = async (operations, res) => {
   try {
     await operations(db);
-    // client.close()
   } catch (error) {
     console.log("Error connecting to DB : ", error);
     res.status(500).json({ message: "Error Connecting to db ", error });
@@ -64,7 +63,6 @@ const createQuiz = async (quiz, res) => {
 const submitQuiz = async (submittedQuiz, res) => {
   withDB(async (db) => {
     try {
-      // Check whether the user has already submitted the Quiz
       const validationCursor = db.collection("users").find({
         $and: [
           { uid: submittedQuiz.uid },
@@ -74,7 +72,6 @@ const submitQuiz = async (submittedQuiz, res) => {
       const quizData = await validationCursor.toArray();
       const email = submittedQuiz.email;
 
-      // If the quiz is already submitted, DONOT submit it.
       if (quizData[0]) {
         console.log("quiz already attempted");
         return res.status(200).json({
@@ -92,7 +89,6 @@ const submitQuiz = async (submittedQuiz, res) => {
       const score = Evaluate(quiz[0].questions, submittedQuiz.questions);
       res.status(200).json({ score });
 
-      // Update in quizzes responses
       await db.collection("quizzes").updateOne(
         { _id: new ObjectId(submittedQuiz.quizId) },
         {
@@ -101,7 +97,6 @@ const submitQuiz = async (submittedQuiz, res) => {
           },
         }
       );
-      // Update user's attempted quizzes
       await db.collection("users").updateOne(
         { uid: submittedQuiz.uid },
         {

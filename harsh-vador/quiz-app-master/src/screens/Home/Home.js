@@ -20,7 +20,6 @@ const Home = ({ setUser }) => {
   useEffect(() => {
     let isMounted = true;
     firebase.auth().onAuthStateChanged((user) => {
-      // setIsLoggedIn(!!user)
       if (user && isMounted) {
         setUser({
           uid: firebase.auth().currentUser.uid,

@@ -3,7 +3,6 @@ const Router = express.Router();
 const DB = require("./DB");
 const ObjectId = require("mongodb").ObjectId;
 
-// Get Quiz Data
 Router.post("/join", (req, res) => {
   const { quizId, uid } = req.body;
   if (!quizId || !uid)
@@ -15,7 +14,6 @@ Router.post("/join", (req, res) => {
         .collection("quizzes")
         .find({ _id: new ObjectId(quizId) })
         .project({
-          // Excluded Fields
           responses: 0,
           "questions.options.isCorrect": 0,
         });
@@ -42,14 +40,12 @@ Router.post("/join", (req, res) => {
   }, res);
 });
 
-// Submit the quiz
 Router.post("/submit", (req, res) => {
   const quiz = req.body;
   if (!quiz) return res.status(500).json({ error: "Incomplete Parameters" });
   DB.submitQuiz(quiz, res);
 });
 
-// Create Quiz
 Router.post("/create", (req, res) => {
   const quiz = req.body;
   if (!quiz) return res.status(500).json({ error: "Incomplete Parameters" });

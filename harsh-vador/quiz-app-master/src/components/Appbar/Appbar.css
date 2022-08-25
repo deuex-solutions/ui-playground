@@ -22,7 +22,6 @@
 }
 .home {
   text-align: center;
-  /* font-family: Roboto; */
   font-style: normal;
   padding: 10px;
   font-size: 30px;
@@ -30,7 +29,6 @@
   text-decoration: none;
 }
 .home b {
-  /* font-family: Roboto; */
   font-size: 30px;
 }
 .home:hover {
