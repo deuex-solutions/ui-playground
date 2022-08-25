@@ -36,19 +36,20 @@
   font-size: 20px;
   width: 250px;
   text-transform: uppercase;
-  transition: 0.5s;
   background-size: 200% auto;
   border-radius: 50px;
   border: none;
-  background-image: var(--accent-bhagwa);
+  background: var(--secondary);
   color: var(--primary);
   box-shadow: 0 0 20px #eee;
 }
 
 .join-button:hover {
-  background-position: right center; 
+  background-position: right center;
   color: #fff;
   cursor: pointer;
+  background: var(--gradient);
+
   text-decoration: none;
 }
 .join-button:focus {
