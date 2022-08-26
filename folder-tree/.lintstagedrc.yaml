@@ -1,0 +1,5 @@
+# Run ESLint
+"*.{ts,tsx,js}": eslint --fix
+
+# Run Prettier
+"*": prettier --write
