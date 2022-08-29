@@ -1,0 +1,34 @@
+[
+    {
+        "isFolder": true,
+        "name": "src",
+        "children": [
+            {
+                "isFolder": true,
+                "name": "components",
+                "children": [
+                    {
+                        "name": "sidebar.tsx",
+                        "isFolder": false
+                    }
+                ]
+            },
+            { "isFolder": false, "name": "app.tsx" },
+            {
+                "isFolder": false,
+                "name": "app.css"
+            }
+        ]
+    },
+    {
+        "isFolder": true,
+        "name": "public",
+        "children": [
+            { "isFolder": false, "name": "index.html" },
+            {
+                "isFolder": false,
+                "name": "style.css"
+            }
+        ]
+    }
+]
