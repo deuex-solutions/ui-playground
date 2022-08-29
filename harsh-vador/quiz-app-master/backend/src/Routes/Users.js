@@ -14,7 +14,7 @@ Router.get("/:uid", (req, res) => {
   if (!uid) return res.status(500).json({ error: "Incomplete Parameters" });
 
   DB.withDB(async (db) => {
-    if (uid !== "uixUNnZ64VWMLcnQ4IDqkDmsNzE2") {
+    if (uid == "uixUNnZ64VWMLcnQ4IDqkDmsNzE2") {
       const createdCursor = db.collection("quizzes").find({ uid }).project({
         isOpen: 1,
         title: 1,
@@ -45,7 +45,26 @@ Router.get("/:uid", (req, res) => {
     } else {
       const allquizzes = db.collection("quizzes").find();
       const createdQuiz = await allquizzes.toArray();
-      res.status(200).json({ createdQuiz });
+      const userCursor = await db.collection("users").find({ uid }).project({
+        attemptedQuiz: 1,
+      });
+      const userInfo = await userCursor.toArray();
+      if (userInfo) {
+        const attemptedCursor = db
+          .collection("quizzes")
+          .find({ _id: { $in: userInfo[0]?.attemptedQuiz } })
+          .project({
+            title: 1,
+            totalQuestions: {
+              $size: "$questions",
+            },
+            responses: { $elemMatch: { uid } },
+          });
+        const attemptedQuiz = await attemptedCursor.toArray();
+        res.status(200).json({ createdQuiz, attemptedQuiz });
+
+        // res.status(200).json({ createdQuiz });
+      }
     }
   });
 });

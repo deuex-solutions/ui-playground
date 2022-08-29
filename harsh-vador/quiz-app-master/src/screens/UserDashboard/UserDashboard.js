@@ -78,7 +78,7 @@ const UserDashBoard = ({ user }) => {
       <div className="quizzes">
         <div className="heading">
           <div className="line-left" />
-          <h2>Created </h2>
+          <h2>All Quizzes </h2>
           <div className="line" />
         </div>
         <div className="card-holder">

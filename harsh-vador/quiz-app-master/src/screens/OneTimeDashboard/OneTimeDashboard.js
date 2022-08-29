@@ -24,9 +24,11 @@ const OneTimeDashboard = ({ user }) => {
               Dashboard
             </button>
           )}
-          <button className="button one-time-button" onClick={onCreateQuiz}>
-            Create Quiz
-          </button>
+          {user.name == "Admin" && (
+            <button className="button one-time-button" onClick={onCreateQuiz}>
+              Create Quiz
+            </button>
+          )}
           <button className="button one-time-button" onClick={onJoinQuiz}>
             Join Quiz
           </button>

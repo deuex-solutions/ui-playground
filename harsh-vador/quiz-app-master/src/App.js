@@ -61,9 +61,11 @@ const App = () => {
             <Route path="/dashboard">
               <UserDashboard user={user} />
             </Route>
-            <Route path="/create-quiz">
-              <CreateQuiz user={user} />
-            </Route>
+            {user.name == "Admin" && (
+              <Route path="/create-quiz">
+                <CreateQuiz user={user} />
+              </Route>
+            )}
             <Route
               path="/created-succesfully/:quizCode"
               component={CreatedSuccesfully}
@@ -72,7 +74,7 @@ const App = () => {
               <JoinQuiz user={user} />
             </Route>
             <Route path="/view-quiz">
-              <AdminDashBoard user={user} />
+              <UserDashboard user={user} />
             </Route>
             <Route path="/attempt-quiz/:quizCode" component={AttemptQuiz} />
             <Route path="/responses/:quizCode" component={Responses} />

@@ -40,7 +40,7 @@ function Sidebar({ user }) {
       icon: <MeetingRoom />,
       CName: "nav-text",
     },
-    {
+    user == "Admin" && {
       title: "Create Quiz",
       path: "/create-quiz",
       icon: <CreateNewFolder />,
