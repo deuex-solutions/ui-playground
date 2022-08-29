@@ -6,8 +6,8 @@ const AppRouter: FunctionComponent = () => {
     return (
         <Suspense>
             <Routes>
-                <Route element={<HomePage />} path="/:slug" />
-                <Route element={<HomePage />} path="/" />
+                <Route element={<HomePage />} path=":slug/*" />
+                <Route index element={<HomePage />} />
             </Routes>
         </Suspense>
     );
