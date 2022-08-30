@@ -6,7 +6,7 @@ import { Route, Routes } from "react-router-dom";
 
 const AppRouter: FunctionComponent = () => {
     return (
-        <Suspense>
+        <Suspense fallback={<h4>Loading...</h4>}>
             <Routes>
                 <Route element={<HomePage />}>
                     <Route element={<DataList list={folderData} />} path="/*" />
