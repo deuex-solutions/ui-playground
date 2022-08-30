@@ -1,7 +1,7 @@
 import { makeStyles } from "@material-ui/core";
 
 export const useFolderCardStyles = makeStyles((theme) => ({
-    root: {
+    folderCardContainer: {
         height: "12rem",
     },
     paper: {
@@ -10,5 +10,13 @@ export const useFolderCardStyles = makeStyles((theme) => ({
         color: theme.palette.text.secondary,
         height: "100%",
         background: "pink",
+    },
+
+    file: {
+        height: "12rem",
+        border: "1px solid #bdbdbd",
+        width: "100%",
+        padding: theme.spacing(2),
+        borderRadius: "4px",
     },
 }));

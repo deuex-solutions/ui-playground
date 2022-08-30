@@ -10,6 +10,16 @@
                     {
                         "name": "sidebar.tsx",
                         "isFolder": false
+                    },
+                    {
+                        "name": "headers",
+                        "isFolder": true,
+                        "children": [
+                            {
+                                "name": "header.tsx",
+                                "isFolder": false
+                            }
+                        ]
                     }
                 ]
             },

@@ -6,5 +6,5 @@ export interface List {
 
 export interface DataListProps {
     list: List[];
-    onChange: (item: List[]) => void;
+    parent?: string;
 }
