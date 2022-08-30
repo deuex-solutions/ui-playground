@@ -1,47 +1,15 @@
-import folderList from "assets/data/folder-data.json";
-import { Breadcrumbs, DataList } from "components";
-import { List } from "components/data-list/data-list.interfaces";
-import { FunctionComponent, useCallback } from "react";
-import { useParams } from "react-router-dom";
-import { GetFilteredList } from "./home-page.interfaces";
+import { Breadcrumbs } from "components";
+import { FunctionComponent } from "react";
+import { Outlet } from "react-router-dom";
+import { useHomePageStyles } from "./home-page.styles";
 
 const HomePage: FunctionComponent = () => {
-    const { slug: name = "" } = useParams();
-
-    const getFilteredList: GetFilteredList = useCallback(
-        (arr: List[], pathname: string) => {
-            const result: List[] = [];
-            let subList = false;
-
-            if (pathname) {
-                arr.forEach((item) => {
-                    if (item.name === pathname && item.isFolder) {
-                        result.push(...(item?.children || []));
-                        subList = true;
-                    }
-                    if (!subList && item.name !== pathname && item.children) {
-                        const subItems = getFilteredList(
-                            item.children,
-                            pathname
-                        );
-                        result.push(...subItems);
-                    }
-                });
-
-                return result;
-            }
-
-            return folderList;
-        },
-        []
-    );
-
-    const list = getFilteredList(folderList, name);
+    const classes = useHomePageStyles();
 
     return (
-        <div>
+        <div className={classes.root}>
             <Breadcrumbs />
-            <DataList list={list} onChange={() => console.log()} />
+            <Outlet />
         </div>
     );
 };
