@@ -40,7 +40,7 @@ const DataList: FunctionComponent<DataListProps> = ({ list, parent }) => {
                 </Grid>
             )}
 
-            {list.map((item) => item.children && renderChildList(item))}
+            {list.map((item) => renderChildList(item))}
         </div>
     );
 };
