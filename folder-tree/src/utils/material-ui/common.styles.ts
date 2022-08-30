@@ -6,4 +6,8 @@ export const useCommonStyles = makeStyles(() => ({
         justifyContent: "center",
         alignItems: "center",
     },
+    largeText: {
+        fontSize: "1.5rem",
+        fontWeight: "bold",
+    },
 }));
