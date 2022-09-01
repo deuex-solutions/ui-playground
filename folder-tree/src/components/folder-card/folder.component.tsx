@@ -26,9 +26,13 @@ const FolderCard: FunctionComponent<FolderCardProps> = ({
                     </Paper>
                 </Link>
             ) : (
-                <Box className={classes.file} role="button">
+                <Box className={classes.file}>
                     {folder.path ? (
-                        <Link component={RouterLink} to={folder.name}>
+                        <Link
+                            className={classes.fileLink}
+                            component={RouterLink}
+                            to={folder.name}
+                        >
                             <Typography>{folder.name}</Typography>
                         </Link>
                     ) : (

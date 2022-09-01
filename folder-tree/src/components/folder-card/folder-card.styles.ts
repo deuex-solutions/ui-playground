@@ -4,7 +4,6 @@ export const useFolderCardStyles = makeStyles((theme) => ({
     folderCardContainer: {
         height: "12rem",
         marginTop: "10px",
-        cursor: "pointer",
     },
     paper: {
         padding: theme.spacing(2),
@@ -47,5 +46,10 @@ export const useFolderCardStyles = makeStyles((theme) => ({
             borderColor:
                 "#fff #fff rgba(255,255,255,.35) rgba(255,255,255,.35)",
         },
+    },
+    fileLink: {
+        display: "block",
+        height: "100%",
+        cursor: "pointer",
     },
 }));
