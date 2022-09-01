@@ -40,5 +40,37 @@
                 "name": "style.css"
             }
         ]
+    },
+    {
+        "isFolder": true,
+        "name": "logs",
+        "children": [
+            {
+                "isFolder": true,
+                "name": "system-logs",
+                "children": [
+                    {
+                        "isFolder": false,
+                        "name": "random.log",
+                        "path": "/assets/logs/random.log"
+                    }
+                ]
+            },
+            {
+                "isFolder": true,
+                "name": "platform-logs",
+                "children": [
+                    {
+                        "isFolder": false,
+                        "name": "platform-mac.log",
+                        "path": "/assets/logs/random.log"
+                    }
+                ]
+            },
+            {
+                "isFolder": false,
+                "name": "info-text.txt"
+            }
+        ]
     }
 ]

@@ -56,3 +56,6 @@ yarn.lock
 public/robots.txt
 
 .husky/pre-commit
+
+# .log files
+*.log
