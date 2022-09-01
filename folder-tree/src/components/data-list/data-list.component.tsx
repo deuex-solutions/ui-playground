@@ -16,15 +16,11 @@ const DataList: FunctionComponent<DataListProps> = ({ list, parent }) => {
     const renderChildList = useCallback((item: List) => {
         if (item.path) {
             return (
-                item.path && (
-                    <Route
-                        element={
-                            <FileReader name={item.name} path={item.path} />
-                        }
-                        key={item.name}
-                        path={item.name}
-                    />
-                )
+                <Route
+                    element={<FileReader name={item.name} path={item.path} />}
+                    key={item.name}
+                    path={item.name}
+                />
             );
         }
 
