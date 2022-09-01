@@ -4,6 +4,7 @@ export const useFolderCardStyles = makeStyles((theme) => ({
     folderCardContainer: {
         height: "12rem",
         marginTop: "10px",
+        cursor: "pointer",
     },
     paper: {
         padding: theme.spacing(2),
@@ -22,15 +23,29 @@ export const useFolderCardStyles = makeStyles((theme) => ({
             backgroundColor: "pink",
             position: "absolute",
             top: "-12px",
-            left: "0",
+            left: 0,
         },
     },
 
     file: {
         height: "12rem",
-        border: "1px solid #bdbdbd",
+        backgroundColor: "#bdbdbd",
         width: "100%",
         padding: theme.spacing(2),
         borderRadius: "4px",
+        position: "relative",
+        borderBottomLeftRadius: "4px",
+
+        "&::before": {
+            content: "''",
+            position: "absolute",
+            top: 0,
+            right: 0,
+            borderBottomLeftRadius: "4px",
+            borderWidth: "16px",
+            borderStyle: "solid",
+            borderColor:
+                "#fff #fff rgba(255,255,255,.35) rgba(255,255,255,.35)",
+        },
     },
 }));

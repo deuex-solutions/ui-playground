@@ -5,7 +5,7 @@ import { useCommonStyles } from "utils/material-ui/common.styles";
 import { FolderCardProps } from "./folder-card.interfaces";
 import { useFolderCardStyles } from "./folder-card.styles";
 
-const Folder: FunctionComponent<FolderCardProps> = ({
+const FolderCard: FunctionComponent<FolderCardProps> = ({
     folder,
     ...otherProps
 }) => {
@@ -26,12 +26,18 @@ const Folder: FunctionComponent<FolderCardProps> = ({
                     </Paper>
                 </Link>
             ) : (
-                <Box className={classes.file}>
-                    <Typography>{folder.name}</Typography>
+                <Box className={classes.file} role="button">
+                    {folder.path ? (
+                        <Link component={RouterLink} to={folder.name}>
+                            <Typography>{folder.name}</Typography>
+                        </Link>
+                    ) : (
+                        <Typography>{folder.name}</Typography>
+                    )}
                 </Box>
             )}
         </div>
     );
 };
 
-export default Folder;
+export default FolderCard;

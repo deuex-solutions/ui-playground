@@ -1,5 +1,5 @@
 import { Grid } from "@material-ui/core";
-import { FolderCard } from "components";
+import { FileReader, FolderCard } from "components";
 import { FunctionComponent, useCallback } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { getParamFromPathname } from "utils/params/params.util";
@@ -14,18 +14,33 @@ const DataList: FunctionComponent<DataListProps> = ({ list, parent }) => {
     const param = getParamFromPathname(pathname);
 
     const renderChildList = useCallback((item: List) => {
-        return (
-            item.children && (
-                <Routes key={item.name}>
+        if (item.path) {
+            return (
+                item.path && (
                     <Route
                         element={
-                            <DataList list={item.children} parent={item.name} />
+                            <FileReader name={item.name} path={item.path} />
                         }
-                        path=":slug/*"
+                        key={item.name}
+                        path={item.name}
                     />
-                </Routes>
-            )
-        );
+                )
+            );
+        }
+
+        if (item.children) {
+            return (
+                <Route
+                    element={
+                        <DataList list={item.children} parent={item.name} />
+                    }
+                    key={item.name}
+                    path={`${item.name}/*`}
+                />
+            );
+        }
+
+        return null;
     }, []);
 
     return (
@@ -40,7 +55,7 @@ const DataList: FunctionComponent<DataListProps> = ({ list, parent }) => {
                 </Grid>
             )}
 
-            {list.map((item) => renderChildList(item))}
+            <Routes>{list.map((item) => renderChildList(item))}</Routes>
         </div>
     );
 };
