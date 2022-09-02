@@ -5,10 +5,6 @@
     "dependencies": {
         "@material-ui/core": "^4.12.4",
         "@material-ui/styles": "^4.11.5",
-        "@testing-library/jest-dom": "^5.14.1",
-        "@testing-library/react": "^13.0.0",
-        "@testing-library/user-event": "^13.2.1",
-        "@types/jest": "^27.0.1",
         "@types/node": "^16.7.13",
         "@types/react": "^18.0.0",
         "@types/react-dom": "^18.0.0",
@@ -19,13 +15,12 @@
         "react-lazylog": "^4.5.3",
         "react-router-dom": "^6.3.0",
         "react-scripts": "5.0.1",
-        "typescript": "^4.4.2",
+        "typescript": "^4.8.2",
         "web-vitals": "^2.1.0"
     },
     "scripts": {
         "start": "react-scripts start",
         "build": "react-scripts build",
-        "test": "react-scripts test",
         "eject": "react-scripts eject",
         "eslint-check": "eslint '**/*.{ts,tsx,js}' --no-error-on-unmatched-pattern",
         "eslint-fix": "eslint '**/*.{ts,tsx,js}' --no-error-on-unmatched-pattern --fix",
@@ -33,7 +28,9 @@
         "prettier-fix": "prettier . --write",
         "lint": "yarn eslint-fix && yarn prettier-fix",
         "lint-check": "yarn eslint-check && yarn prettier-check",
-        "prepare": "cd .. && husky install folder-tree/.husky"
+        "prepare": "cd .. && husky install folder-tree/.husky",
+        "test": "react-scripts test  -- --config=jest.config.js",
+        "test-watch": "react-scripts --watch"
     },
     "browserslist": {
         "production": [
@@ -48,6 +45,9 @@
         ]
     },
     "devDependencies": {
+        "@testing-library/jest-dom": "^5.14.1",
+        "@testing-library/react": "^13.0.0",
+        "@testing-library/user-event": "^13.2.1",
         "@typescript-eslint/eslint-plugin": "^5.35.1",
         "@typescript-eslint/parser": "^5.35.1",
         "eslint": "^7.32.0 || ^8.2.0",
@@ -56,7 +56,9 @@
         "eslint-plugin-react": "^7.28.0",
         "eslint-plugin-react-hooks": "^4.3.0",
         "husky": "^8.0.1",
+        "jest-environment-jsdom": "27.5.1",
         "lint-staged": "^13.0.3",
-        "prettier": "^2.7.1"
+        "prettier": "^2.7.1",
+        "ts-jest": "^28.0.8"
     }
 }
