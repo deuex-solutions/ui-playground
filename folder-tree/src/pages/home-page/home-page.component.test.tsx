@@ -18,7 +18,9 @@ jest.mock("components/data-list/data-list.component", () => ({
     __esModule: true,
     default: jest.fn().mockImplementation((props) => (
         <div>
-            <p>{props.list.map((item: List) => item.name)}</p>
+            {props.list.map((item: List) => (
+                <p key={item.name}>{item.name}</p>
+            ))}
         </div>
     )),
 }));
@@ -31,22 +33,18 @@ describe("Home Page", () => {
         expect(screen.getByText("src")).toHaveAttribute("href", "/src");
     });
 
-    it("should render data list component in place of Outlet at base route", async () => {
+    it.only("should render data list component in place of Outlet at base route", async () => {
         render(
             <MemoryRouter initialEntries={["/"]}>
                 <Routes>
-                    <Route element={<HomePage />}>
-                        <Route
-                            element={
-                                <DataList
-                                    list={[
-                                        { name: "app.test", isFolder: false },
-                                    ]}
-                                />
-                            }
-                            path="/*"
-                        />
-                    </Route>
+                    <Route
+                        element={
+                            <DataList
+                                list={[{ name: "app.test", isFolder: false }]}
+                            />
+                        }
+                        path="/*"
+                    />
                 </Routes>
             </MemoryRouter>
         );
