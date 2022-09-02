@@ -33,7 +33,7 @@ describe("Home Page", () => {
         expect(screen.getByText("src")).toHaveAttribute("href", "/src");
     });
 
-    it.only("should render data list component in place of Outlet at base route", async () => {
+    it("should render data list component in place of Outlet at base route", async () => {
         render(
             <MemoryRouter initialEntries={["/"]}>
                 <Routes>
