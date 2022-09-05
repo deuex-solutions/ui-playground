@@ -284,30 +284,33 @@ const handleTodoClick = (event) => {
     return toggleTodoCompleted(event);
   } else {
     if (tagName === "BUTTON") {
-      switch (id) {
-        case "add-sub-todo":
-          return handleAddTodo(event);
-        case "add-todo":
-          return handleAddTodo(event);
-        case "delete-todo":
-          return deleteTodo(event);
-        case "edit-todo":
-          return renderEditTodoNodes(event);
-        case "update-todo":
-          return handleEditTodo(event);
-        case "sub-todo":
-          return renderCreateSubTodoNodes(event);
-        case "cancel-sub-todo":
-          return removeTodoNodes(event);
-        case "cancel-edit-todo":
-          return removeTodoNodes(event);
-        case "clear":
-          return clearAllTodos();
-        case "mark-complete":
-          return handleMarkAllComplete();
-      }
+      const action = getActions(id);
+      action(event);
     }
   }
+};
+
+const getActions = (id) => {
+  const actions = {
+    "add-sub-todo": handleAddTodo,
+    "add-todo": handleAddTodo,
+    "delete-todo": deleteTodo,
+    "edit-todo": renderEditTodoNodes,
+    "update-todo": handleEditTodo,
+    "sub-todo": renderCreateSubTodoNodes,
+    "cancel-sub-todo": removeTodoNodes,
+    "cancel-edit-todo": removeTodoNodes,
+    "mark-complete": handleMarkAllComplete,
+    clear: clearAllTodos,
+  };
+
+  const actionCallback = actions[id];
+
+  return (...args) => {
+    if (typeof actionCallback === "function") {
+      actionCallback.apply(null, [...args]);
+    }
+  };
 };
 
 // event listeners attached
