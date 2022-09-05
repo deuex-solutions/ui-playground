@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.1/css/all.min.css"
+      integrity="sha512-9my9Mb2+0YO+I4PUCSwUYO7sEK21Y0STBAiFEYoWtd2VzLEZZ4QARDrZ30hdM1GlioHJ8o8cWQiy8IAb1hy/Hg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <title>FlixTodos</title>
+  </head>
+  <body>
+    <main>
+      <h2 class="header-text">TO-DO LIST</h2>
+      <div class="container input-container">
+        <input type="text" placeholder="New Task" />
+        <button type="button" disabled id="add-todo">ADD</button>
+      </div>
+      <div class="container todo-container d-none">
+        <div id="todo-wrapper"></div>
+        <div class="action-container">
+          <button id="mark-complete" class="action-btn">
+            Mark All Complete
+          </button>
+          <button id="clear" class="action-btn">Delete All</button>
+        </div>
+      </div>
+      <h3 class="header-text" id="no-todo-text">No Todos found</h3>
+    </main>
+    <script type="module" src="./js/todo.js"></script>
+  </body>
+</html>

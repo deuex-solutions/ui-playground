@@ -1,0 +1,170 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&display=swap");
+
+:root {
+  --primary-color: #f25278;
+  --secondary-color: rgb(69, 69, 236);
+  --text-primary: #fff;
+  --border-color: #bdbdbd;
+  --disabled-color: rgba(189, 189, 235, 0.925);
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Open Sans", "Courier New", Courier, monospace;
+}
+
+body {
+  min-height: calc(100vh - 1.5rem);
+  width: 100%;
+  background-color: var(--primary-color);
+}
+
+body li {
+  list-style-type: none;
+}
+
+.header-text {
+  width: 100%;
+  text-align: center;
+  margin: 1.5rem 0;
+  color: var(--text-primary);
+}
+.container {
+  margin: 0 auto;
+  max-width: 35rem;
+}
+
+.input-container {
+  margin: 1rem auto;
+  display: flex;
+  background-color: var(--text-primary);
+  align-items: center;
+}
+.input-container > input {
+  padding: 0.5rem 0.8rem;
+  width: 100%;
+  outline: none;
+  font-size: 1.15rem;
+  border: 0;
+}
+.input-container > button {
+  padding-right: 1rem;
+  background: transparent;
+  border: 0;
+  color: var(--secondary-color);
+  font-weight: 600;
+  font-size: 1.05rem;
+  cursor: pointer;
+}
+
+.input-container button:disabled,
+.todo-container button:disabled {
+  color: var(--disabled-color);
+  cursor: initial;
+}
+
+.todo-container {
+  background-color: var(--text-primary);
+  margin: 1.5rem auto;
+}
+
+.todo-container button {
+  min-width: 1.5rem;
+  height: 1.5rem;
+  margin-right: 8px;
+  background-color: var(--primary-color);
+  color: var(--text-primary);
+  border: 0;
+  outline: none;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.todo {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  position: relative;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.todo.sub-todo-input {
+  padding-top: 1rem;
+  padding-left: 1.2rem;
+}
+
+button {
+  padding: 0 10px;
+}
+.todo button:disabled {
+  opacity: 0.8;
+  color: var(--text-primary);
+  cursor: initial;
+}
+.todo input[type="checkbox"] {
+  margin-right: 8px;
+  cursor: pointer;
+}
+.todo input[type="text"] {
+  padding: 0.4rem;
+  flex: 1;
+  outline: none;
+}
+.todo p {
+  font-size: 1.05rem;
+  flex: 1;
+  word-break: break-all;
+  color: gray;
+  margin-bottom: 4px;
+  text-align: start;
+  padding: 0 8px;
+}
+
+p.text-through {
+  text-decoration: line-through;
+  color: var(--primary-color);
+}
+
+.sub-todo {
+  padding-left: 1.2rem;
+}
+
+.action-container {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  margin: 1rem 0 1rem auto;
+}
+
+/* Utility classes */
+.d-none {
+  display: none;
+}
+
+.d-block {
+  display: block;
+}
+.padding-xs {
+  padding: 1rem;
+}
+
+.action-container .action-btn {
+  display: block;
+  padding: 0 1rem;
+  margin: 0;
+}
+.action-container .action-btn:first-child {
+  margin-right: 8px;
+}
+.invisible {
+  visibility: hidden;
+}
+.padding-bottom-0 {
+  padding-bottom: 0;
+}
+
+.padding-top-0 {
+  padding-top: 0;
+}
