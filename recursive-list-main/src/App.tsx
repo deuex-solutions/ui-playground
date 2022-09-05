@@ -1,25 +1,12 @@
-import "./App.css";
-import List from "./components/List/Index";
-import { useState } from "react";
-import { mockItems } from "./mockData";
+import { FunctionComponent } from "react";
+import AppRouter from "routers/app/app.router";
 
-function App() {
-  const [openFolderRecord, setOpenFolderRecord] = useState<
-    Record<string, boolean>
-  >({});
-  const handleFolderClick = (id: string) => {
-    setOpenFolderRecord({ ...openFolderRecord, [id]: !openFolderRecord[id] });
-  };
-
+export const App: FunctionComponent = () => {
   return (
     <div className="App">
-      <List
-        items={mockItems}
-        openFolderRecord={openFolderRecord}
-        handleFolderClick={handleFolderClick}
-      />
+      <AppRouter />
     </div>
   );
-}
+};
 
 export default App;
