@@ -1,60 +1,60 @@
 const validateInput = (value = "") => {
   if (value === "") {
-    return false
+    return false;
   }
-  return true
-}
+  return true;
+};
 
 const getFilteredTodos = (todos = [], todoId) => {
-  const result = []
-  for (let todo of todos) {
+  const result = [];
+  todos.forEach((todo) => {
     if (todo?.children?.length > 0) {
-      const subArr = getFilteredTodos(todo.children, todoId)
-      todo.children = subArr
+      const subArr = getFilteredTodos(todo.children, todoId);
+      todo.children = subArr;
     }
     if (todo.id !== todoId) {
-      result.push(todo)
+      result.push(todo);
     }
-  }
+  });
 
-  return result
-}
+  return result;
+};
 
 const findTodo = (todos = [], todoId) => {
-  let searchedTodo
+  let searchedTodo;
 
-  for (let todo of todos) {
+  todos.forEach((todo) => {
     if (!searchedTodo && todo?.children?.length > 0) {
-      searchedTodo = findTodo(todo.children, todoId)
+      searchedTodo = findTodo(todo.children, todoId);
     }
     if (todo.id === todoId) {
-      searchedTodo = todo
+      searchedTodo = todo;
     }
-  }
+  });
 
-  return searchedTodo
-}
+  return searchedTodo;
+};
 
 const markTodosComplete = (todos = []) => {
   return todos.map((todoItem) => {
     if (todoItem?.children?.length > 0) {
-      const subTodos = markTodosComplete(todoItem.children)
-      todoItem.children = [...subTodos]
+      const subTodos = markTodosComplete(todoItem.children);
+      todoItem.children = [...subTodos];
     }
-    return { ...todoItem, isCompleted: true }
-  })
-}
+    return { ...todoItem, isCompleted: true };
+  });
+};
 
 const findNode = (parentNode = {}, tagName = "") => {
-  let resultNode
+  let resultNode;
 
   parentNode?.childNodes?.forEach((nodeItem) => {
     if (!resultNode && nodeItem.tagName === tagName) {
-      resultNode = nodeItem
+      resultNode = nodeItem;
     }
-  })
-  return resultNode
-}
+  });
+  return resultNode;
+};
 
 export {
   validateInput,
@@ -62,4 +62,4 @@ export {
   findTodo,
   markTodosComplete,
   findNode,
-}
+};
