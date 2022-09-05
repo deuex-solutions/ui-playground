@@ -14,7 +14,7 @@ import {
   getFilteredTodos,
   markTodosComplete,
   validateInput,
-} from "./utils/helperFuncs.js";
+} from "./utils/helpers.js";
 
 // Creates todo nodes and attaches listeners to parent node
 const createTodoNodes = (todo, draggable, includeChildTodos) => {

@@ -27,9 +27,10 @@ const createTodoBase = (todo, props = {}) => {
     );
 
     if (currentTodoIdx >= 0 && previousTodoIdx >= 0) {
-      const temp = todos[currentTodoIdx];
-      todos[currentTodoIdx] = todos[previousTodoIdx];
-      todos[previousTodoIdx] = temp;
+      [todos[currentTodoIdx], todos[previousTodoIdx]] = [
+        todos[previousTodoIdx],
+        todos[currentTodoIdx],
+      ];
 
       todoWrapper.innerHTML = "";
       render();
