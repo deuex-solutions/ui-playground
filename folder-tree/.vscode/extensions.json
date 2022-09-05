@@ -1,0 +1,9 @@
+{
+    // Recommended extensions for this workspace
+    "recommendations": [
+        "dbaeumer.vscode-eslint", // ESLint
+        "stylelint.vscode-stylelint", // stylelint
+        "esbenp.prettier-vscode", // Prettier
+        "streetsidesoftware.code-spell-checker" // Spell Checker
+    ]
+}
