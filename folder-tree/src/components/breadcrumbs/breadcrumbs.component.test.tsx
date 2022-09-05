@@ -8,7 +8,7 @@ jest.mock("react-router-dom", () => ({
 }));
 
 describe("Breadcrumbs", () => {
-    it("should render home breadcrumbs links by default", () => {
+    it("should render home breadcrumb link by default", () => {
         render(
             <MemoryRouter>
                 <Breadcrumbs />
