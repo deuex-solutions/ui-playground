@@ -9,10 +9,14 @@ export interface FileProps {
 
 const File: FunctionComponent<FileProps> = ({ path }) => {
   const classes = useFileStyles();
+  console.log(path);
 
   return (
     <div className={classes.fileRoot}>
-      <ScrollFollow startFollowing render={() => <LazyLog url={path} />} />
+      <ScrollFollow
+        startFollowing
+        render={() => <LazyLog extraLines={1} enableSearch stream url={path} />}
+      />
     </div>
   );
 };
