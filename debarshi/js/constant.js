@@ -1,3 +1,3 @@
-const todos = []
+const todos = [];
 
-export default todos
+export default todos;

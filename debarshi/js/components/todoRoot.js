@@ -2,30 +2,30 @@ const createTodoRoot = (hasChildTodos = false) => {
   function onTodoMouseOver() {
     this.childNodes.forEach((node) => {
       if (node.id === "sub-todo") {
-        node.classList.remove("invisible")
+        node.classList.remove("invisible");
       }
-    })
+    });
   }
 
   function onTodoMouseLeave() {
     this.childNodes.forEach((node) => {
       if (node.id === "sub-todo") {
-        node.classList.add("invisible")
+        node.classList.add("invisible");
       }
-    })
+    });
   }
 
-  const todoEl = document.createElement("div")
-  todoEl.classList.add("todo")
+  const todoEl = document.createElement("div");
+  todoEl.classList.add("todo");
 
   if (hasChildTodos) {
-    todoEl.addEventListener("mouseover", onTodoMouseOver)
-    todoEl.addEventListener("mouseleave", onTodoMouseLeave)
+    todoEl.addEventListener("mouseover", onTodoMouseOver);
+    todoEl.addEventListener("mouseleave", onTodoMouseLeave);
   } else {
-    todoEl.classList.add("sub-todo")
+    todoEl.classList.add("sub-todo");
   }
 
-  return todoEl
-}
+  return todoEl;
+};
 
-export default createTodoRoot
+export default createTodoRoot;

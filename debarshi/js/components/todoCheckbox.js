@@ -1,9 +1,9 @@
 const createTodoCheckbox = (isCompleted = false) => {
-  const todoCheckEl = document.createElement("input")
-  todoCheckEl.type = "checkbox"
-  todoCheckEl.checked = isCompleted
+  const todoCheckEl = document.createElement("input");
+  todoCheckEl.type = "checkbox";
+  todoCheckEl.checked = isCompleted;
 
-  return todoCheckEl
-}
+  return todoCheckEl;
+};
 
-export default createTodoCheckbox
+export default createTodoCheckbox;
