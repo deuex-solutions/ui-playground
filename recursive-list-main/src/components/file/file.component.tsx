@@ -9,8 +9,6 @@ export interface FileProps {
 
 const File: FunctionComponent<FileProps> = ({ path }) => {
   const classes = useFileStyles();
-  console.log(path);
-
   return (
     <div className={classes.fileRoot}>
       <ScrollFollow

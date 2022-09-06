@@ -12,12 +12,12 @@ export interface List {
   path?: string;
 }
 
-export interface ListProps {
+export interface ListDataProps {
   list: List[];
   parent?: string;
 }
 
-const List: FunctionComponent<ListProps> = ({ list, parent }) => {
+const ListData: FunctionComponent<ListDataProps> = ({ list, parent }) => {
   const classes = useListStyles();
 
   const { pathname } = useLocation();
@@ -38,7 +38,7 @@ const List: FunctionComponent<ListProps> = ({ list, parent }) => {
     if (item.children) {
       return (
         <Route
-          element={<List list={item.children} parent={item.name} />}
+          element={<ListData list={item.children} parent={item.name} />}
           key={item.name}
           path={`${item.name}/*`}
         />
@@ -65,8 +65,8 @@ const List: FunctionComponent<ListProps> = ({ list, parent }) => {
   );
 };
 
-List.defaultProps = {
+ListData.defaultProps = {
   parent: "",
 };
 
-export default List;
+export default ListData;

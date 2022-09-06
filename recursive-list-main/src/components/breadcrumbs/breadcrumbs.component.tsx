@@ -2,7 +2,6 @@ import { Breadcrumbs as MuiBreadcrumbs, Link } from "@material-ui/core";
 import { FunctionComponent } from "react";
 import { Link as RouterLink, useLocation } from "react-router-dom";
 import { useBreadcrumbsStyles } from "./breadcrumbs.styles";
-import { ReactComponent as SvgHome } from "../../assets/icon/home.svg";
 
 export interface Breadcrumb {
   path: string;
@@ -36,10 +35,10 @@ const Breadcrumbs: FunctionComponent = () => {
     <MuiBreadcrumbs
       aria-label="breadcrumb"
       className={classes.crumbContainer}
-      maxItems={3}
+      maxItems={2}
     >
       <Link color="inherit" component={RouterLink} to="/">
-        <SvgHome />
+        Home
       </Link>
 
       {breadcrumbList.map((crumb: Breadcrumb) => (
