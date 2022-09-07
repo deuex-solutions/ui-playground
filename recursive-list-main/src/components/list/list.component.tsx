@@ -49,7 +49,7 @@ const ListData: FunctionComponent<ListDataProps> = ({ list, parent }) => {
   }, []);
 
   return (
-    <div className={classes.ListContainer}>
+    <div className={classes.ListContainer} data-testid="list-container">
       {parent === param && (
         <Grid container spacing={2}>
           {list.map((item) => (
