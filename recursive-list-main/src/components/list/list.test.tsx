@@ -1,5 +1,4 @@
-import { render, screen } from "@testing-library/react";
-import File from "components/file/file.component";
+import { render } from "@testing-library/react";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import { ListData } from "../index";
 import { List } from "./list.component";
@@ -31,30 +30,25 @@ const mockList: List[] = [
   },
 ];
 describe("ListData", () => {
-  //Currently not working
-
-  // it("Display file with path", () => {
-  //   const abc = render(
-  //     <MemoryRouter initialEntries={["/Content/Index/home.log"]}>
-  //       <ListData
-  //         list={[
-  //           {
-  //             name: "home.log",
-  //             isFolder: false,
-  //             path: "/Content/Index/home.log",
-  //           },
-  //         ]}
-  //       />
-  //       <Routes>
-  //         <Route
-  //           element={<File name="home.log" path="/Content/Index/home.log" />}
-  //           path="/Content/Index/home.log"
-  //         />
-  //       </Routes>
-  //     </MemoryRouter>
-  //   );
-  //   expect(abc.getByText("/Content/Index/home.log")).toBeInTheDocument();
-  // });
+  it("Display file with a given path", () => {
+    const { getByText } = render(
+      <MemoryRouter initialEntries={["/Content/Index/home.log"]}>
+        <ListData
+          list={[
+            {
+              name: "home.log",
+              isFolder: false,
+              path: "/Content/Index/home.log",
+            },
+          ]}
+        />
+        <Routes>
+          <Route element={<div>home.log</div>} path="/Content/Index/home.log" />
+        </Routes>
+      </MemoryRouter>
+    );
+    expect(getByText("home.log")).toBeInTheDocument();
+  });
 
   it("Display list items when list has data", () => {
     const { getAllByTestId } = render(
