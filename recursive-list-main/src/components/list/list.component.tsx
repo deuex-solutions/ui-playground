@@ -24,6 +24,7 @@ const ListData: FunctionComponent<ListDataProps> = ({ list, parent }) => {
 
   const param = getParamFromPathname(pathname);
 
+  /* returns List of files and routes them accordingly */
   const renderChildList = useCallback((item: List) => {
     if (item.path) {
       return (
@@ -34,6 +35,8 @@ const ListData: FunctionComponent<ListDataProps> = ({ list, parent }) => {
         />
       );
     }
+
+    /* checks if children exists */
 
     if (item.children) {
       return (

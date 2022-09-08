@@ -8,7 +8,7 @@ const ListData = lazy(() => import("../../components/list/list.component"));
 
 const AppRouter: FunctionComponent = () => {
   return (
-    <Suspense fallback={<h4>Loading...</h4>}>
+    <Suspense fallback={<h4>Loading.....</h4>}>
       <Routes>
         <Route element={<HomePage />}>
           <Route element={<ListData list={folderData} />} path="/*" />

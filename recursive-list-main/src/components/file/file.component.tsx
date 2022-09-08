@@ -10,6 +10,9 @@ export interface FileProps {
 const File: FunctionComponent<FileProps> = ({ path }) => {
   const classes = useFileStyles();
   return (
+    /* displays the content of log file
+    @param {url} path Path to the file */
+
     <div className={classes.fileRoot} data-testid="log">
       <ScrollFollow
         startFollowing

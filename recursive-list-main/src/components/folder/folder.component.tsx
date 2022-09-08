@@ -13,6 +13,7 @@ const Folder: FunctionComponent<FolderProps> = ({ folder, ...otherProps }) => {
   const classes = useFolderStyles();
 
   return (
+    /* Checks if it is a file or folder and renders accordingly */
     <div className={classes.folderContainer} {...otherProps}>
       {folder.isFolder ? (
         <Link

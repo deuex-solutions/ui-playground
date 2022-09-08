@@ -18,12 +18,15 @@ const Breadcrumbs: FunctionComponent = () => {
   const getBreadcrumbList: GetBreadcrumbList = () => {
     let basePath = "";
 
+    /* Returns an array of the breadcrumb list containing
+    @param name
+    @param path */
+
     const pathnames: Breadcrumb[] = pathname
       .split("/")
       .filter((item) => item !== "")
       .map((item) => {
         basePath = basePath ? `${basePath}/${item}` : item;
-
         return { name: item, path: basePath };
       });
 
@@ -41,6 +44,7 @@ const Breadcrumbs: FunctionComponent = () => {
         Home
       </Link>
 
+      {/* generate breadcrumb list */}
       {breadcrumbList.map((crumb: Breadcrumb) => (
         <Link component={RouterLink} key={crumb.name} to={crumb.path}>
           {crumb.name}

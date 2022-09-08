@@ -1,6 +1,6 @@
 import { makeStyles } from "@material-ui/core";
 
-export const useFolderStyles = makeStyles((theme) => ({
+export const useFolderStyles = makeStyles(() => ({
   folderContainer: {
     height: "12rem",
     marginTop: "10px",
@@ -40,7 +40,7 @@ export const useFolderStyles = makeStyles((theme) => ({
       position: "absolute",
       top: 0,
       right: 0,
-      borderBottomLeftRadius: "4px",
+      borderBottomLeftRadius: "6px",
       borderWidth: "16px",
       backgroundColor: "#2b9bc",
       borderStyle: "solid",
