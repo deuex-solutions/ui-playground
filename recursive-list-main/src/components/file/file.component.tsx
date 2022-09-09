@@ -10,7 +10,6 @@ const File = ({ path }: FileProps) => {
 
     <div className={classes.fileRoot} data-testid="log">
       <ScrollFollow
-        startFollowing
         render={() => <LazyLog extraLines={1} enableSearch stream url={path} />}
       />
     </div>

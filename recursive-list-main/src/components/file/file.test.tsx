@@ -6,10 +6,7 @@ describe("File", () => {
   it("Should display file if it contains content", () => {
     render(
       <MemoryRouter>
-        <File
-          name="home.log"
-          path="https://gist.githubusercontent.com/helfi92/96d4444aa0ed46c5f9060a789d316100/raw/ba0d30a9877ea5cc23c7afcd44505dbc2bab1538/typical-live_backing.log"
-        />
+        <File name="home.log" path="/content/home.log" />
       </MemoryRouter>
     );
 
