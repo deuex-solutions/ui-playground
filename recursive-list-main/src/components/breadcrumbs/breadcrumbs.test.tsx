@@ -3,13 +3,13 @@ import { Breadcrumbs } from "components";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 
 describe("Breadcrumbs", () => {
-  it("display home breadcrumb by default", () => {
+  it("Should display home breadcrumb by default", () => {
     render(
       <MemoryRouter>
         <Breadcrumbs />
       </MemoryRouter>
     );
 
-    expect(screen.getByTestId("home_svg")).toHaveAttribute("href", "/");
+    expect(screen.getByTestId("home-svg")).toHaveAttribute("href", "/");
   });
 });

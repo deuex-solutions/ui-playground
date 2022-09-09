@@ -1,7 +1,7 @@
 import { render } from "@testing-library/react";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import { ListData } from "../index";
-import { List } from "./list.component";
+import { List } from "./list.interfaces";
 
 jest.mock("../folder/folder.component", () => ({
   default: jest
@@ -30,7 +30,7 @@ const mockList: List[] = [
   },
 ];
 describe("ListData", () => {
-  it("Display file with a given path", () => {
+  it("Should display file with a given path", () => {
     const { getByText } = render(
       <MemoryRouter initialEntries={["/Content/Index/home.log"]}>
         <ListData
@@ -50,7 +50,7 @@ describe("ListData", () => {
     expect(getByText("home.log")).toBeInTheDocument();
   });
 
-  it("Display list items when list has data", () => {
+  it("Should display list items when list has data", () => {
     const { getAllByTestId } = render(
       <MemoryRouter>
         <ListData
@@ -63,7 +63,7 @@ describe("ListData", () => {
     expect(getAllByTestId("list-container")[0]).toBeInTheDocument();
   });
 
-  it("display data list component when item has children", () => {
+  it("Should display data list component when item has children", () => {
     const { getAllByTestId } = render(
       <MemoryRouter initialEntries={["/"]}>
         <ListData list={mockList} />

@@ -2,13 +2,7 @@ import { Breadcrumbs as MuiBreadcrumbs, Link } from "@material-ui/core";
 import { Link as RouterLink, useLocation } from "react-router-dom";
 import { useBreadcrumbsStyles } from "./breadcrumbs.styles";
 import { ReactComponent as SvgHome } from "../../assets/icon/home.svg";
-export interface Breadcrumb {
-  path: string;
-  name: string;
-}
-export interface GetBreadcrumbList {
-  (): Breadcrumb[];
-}
+import { Breadcrumb, GetBreadcrumbList } from "./breadcrumbs.interfaces";
 
 const Breadcrumbs = () => {
   const classes = useBreadcrumbsStyles();
@@ -43,7 +37,7 @@ const Breadcrumbs = () => {
         color="inherit"
         component={RouterLink}
         to="/"
-        data-testid="home_svg"
+        data-testid="home-svg"
       >
         <SvgHome />
       </Link>

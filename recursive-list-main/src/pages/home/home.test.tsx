@@ -11,7 +11,7 @@ describe("Home Page", () => {
       </MemoryRouter>
     );
 
-    expect(screen.getByTestId("home_svg")).toHaveAttribute("href", "/");
+    expect(screen.getByTestId("home-svg")).toHaveAttribute("href", "/");
   });
 });
 

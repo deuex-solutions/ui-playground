@@ -1,7 +1,8 @@
 import { makeStyles } from "@material-ui/core";
 
-export const useBreadcrumbsStyles = makeStyles(() => ({
+export const useBreadcrumbsStyles = makeStyles((theme) => ({
   crumbContainer: {
-    marginBottom: "25px",
+    marginBottom: theme.spacing(8),
+    marginTop: theme.spacing(4),
   },
 }));

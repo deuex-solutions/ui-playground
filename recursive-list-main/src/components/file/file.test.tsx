@@ -3,7 +3,7 @@ import { MemoryRouter } from "react-router";
 import File from "./file.component";
 
 describe("File", () => {
-  it("Display file if it contains content", () => {
+  it("Should display file if it contains content", () => {
     render(
       <MemoryRouter>
         <File

@@ -3,19 +3,8 @@ import { File, Folder } from "components";
 import { useCallback } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { getParamFromPathname } from "utils/params/params.util";
+import { List, ListDataProps } from "./list.interfaces";
 import { useListStyles } from "./list.styles";
-
-export interface List {
-  isFolder: boolean;
-  name: string;
-  children?: List[];
-  path?: string;
-}
-
-export interface ListDataProps {
-  list: List[];
-  parent?: string;
-}
 
 const ListData = ({ list, parent }: ListDataProps) => {
   const classes = useListStyles();

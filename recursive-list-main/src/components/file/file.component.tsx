@@ -1,10 +1,6 @@
 import { LazyLog, ScrollFollow } from "react-lazylog";
+import { FileProps } from "./file.interfaces";
 import { useFileStyles } from "./file.styles";
-
-export interface FileProps {
-  path: string;
-  name: string;
-}
 
 const File = ({ path }: FileProps) => {
   const classes = useFileStyles();
