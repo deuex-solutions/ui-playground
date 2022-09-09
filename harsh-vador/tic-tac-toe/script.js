@@ -164,7 +164,7 @@ function resetGrid() {
     cell.classList.remove("winner");
   });
   msg.textContent = "";
-  chooser.classList.remove("game-on");
+  chooser.classList.remove("game_on");
   grid.innerHTML = "";
   userName.value = "";
   submitBtn.style.display = "initial";
@@ -173,7 +173,7 @@ function resetGrid() {
 function buildGrid() {
   submitBtn.style.display = "none";
 
-  chooser.classList.add("game-on");
+  chooser.classList.add("game_on");
   for (let i = 1; i <= 9; i++) {
     let cell = document.createElement("li");
     cell.id = "c" + i;
@@ -184,7 +184,7 @@ function buildGrid() {
 }
 
 let players = Array.prototype.slice.call(
-  document.querySelectorAll("input[name=player-choice]")
+  document.querySelectorAll("input[name=player_choice]")
 );
 
 players.forEach(function (choice) {
@@ -213,7 +213,7 @@ function selectSymbol(sym) {
 
 function startGame() {
   submitBtn.style.display = "none";
-  chooser.classList.add("game-on");
+  chooser.classList.add("game_on");
   table.classList.add("show_table");
   document.querySelector("#reset").style.display = "none";
   document.querySelector(".endGame_div").style.display = "none";

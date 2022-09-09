@@ -44,8 +44,8 @@ h1 {
   padding-bottom: 1em;
 }
 
-.player-choice-1,
-.player-choice-2 {
+.player_choice_1,
+.player_choice_2 {
   font-size: 28px;
 }
 
@@ -79,12 +79,12 @@ form fieldset {
   transition: all ease 1s;
 }
 
-form.game-on fieldset {
+form.game_on fieldset {
   opacity: 0;
   display: none;
 }
 
-form.game-on button {
+form.game_on button {
   opacity: 1;
   display: block;
   margin: 0 auto;
@@ -94,7 +94,7 @@ form.game-on button {
   margin: 3em 0;
 }
 
-form.game-on.submit_button {
+form.game_on.submit_button {
   display: none;
 }
 
@@ -142,8 +142,8 @@ li {
   color: green;
 }
 
-.btn-primary,
-.btn-primary:focus {
+.btn_primary,
+.btn_primary:focus {
   opacity: 0;
   outline: 0;
   padding: 5px;
