@@ -13,7 +13,13 @@ const ListData = ({ list, parent }: ListDataProps) => {
 
   const param = getParamFromPathname(pathname);
 
-  /* returns List of files and routes them accordingly */
+  /**
+   * Returns a list of files
+   * @param {List} ListItem
+   * @return {List} File
+   * @return {List} Folder
+   */
+
   const renderChildList = useCallback((ListItem: List) => {
     if (ListItem.path) {
       return (

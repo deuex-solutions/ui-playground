@@ -5,9 +5,6 @@ import { useFileStyles } from "./file.styles";
 const File = ({ path }: FileProps) => {
   const classes = useFileStyles();
   return (
-    /* displays the content of log file
-    @param {url} path Path to the file */
-
     <div className={classes.fileRoot} data-testid="log">
       <ScrollFollow
         render={() => <LazyLog extraLines={1} enableSearch stream url={path} />}

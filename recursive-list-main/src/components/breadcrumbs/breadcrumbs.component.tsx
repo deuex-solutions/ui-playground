@@ -11,9 +11,12 @@ const Breadcrumbs = () => {
   const getBreadcrumbList: GetBreadcrumbList = () => {
     let basePath = "";
 
-    /* Returns an array of the breadcrumb list containing
-    @param name
-    @param path */
+    /**
+     * Returns an array of the breadcrumb list containing
+     * @param {string} item
+     * @param {string} path
+     * @return {array} pathnames
+     */
 
     const pathnames: Breadcrumb[] = pathname
       .split("/")
@@ -22,6 +25,7 @@ const Breadcrumbs = () => {
         basePath = basePath ? `${basePath}/${item}` : item;
         return { name: item, path: basePath };
       });
+    console.log(typeof pathnames);
 
     return pathnames;
   };
