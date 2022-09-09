@@ -1,14 +1,14 @@
-var grid = document.getElementById("grid");
-var msg = document.querySelector(".message");
-var chooser = document.querySelector("form");
-var mark;
-var cells;
-var moves = 0;
-var userName = document.querySelector(".name");
-var table = document.querySelector(".table");
-var submitBtn = document.querySelector(".submit_button");
+let grid = document.getElementById("grid");
+let msg = document.querySelector(".message");
+let chooser = document.querySelector("form");
+let mark;
+let cells;
+let moves = 0;
+let userName = document.querySelector(".name");
+let table = document.querySelector(".table");
+let submitBtn = document.querySelector(".submit_button");
 let origBoard;
-let huPlayer = "O";
+let userPlayer = "O";
 let aiPlayer = "X";
 
 const winCombos = [
@@ -52,17 +52,19 @@ function playerMove() {
 }
 
 function computerMove() {
-  var emptyCells = [];
-  var random;
+  let emptyCells = [];
+  let random;
 
   cells.forEach(function (cell) {
     if (cell.textContent == "") {
       emptyCells.push(cell);
     }
   });
+
   random = Math.ceil(Math.random() * emptyCells.length) - 1;
   emptyCells[random].textContent = mark;
   moves++;
+
   if (emptyCells[random].textContent == undefined) alert("tie");
   checkRow();
   switchMark();
@@ -90,6 +92,7 @@ function winner(a, b, c) {
     c.classList.add("winner");
     grid.classList.add("disabled");
     userName.value = "";
+
     return true;
   } else if (
     mark == "O" &&
@@ -102,6 +105,7 @@ function winner(a, b, c) {
     b.classList.add("winner");
     c.classList.add("winner");
     grid.classList.add("disabled");
+
     return true;
   } else {
     return false;
@@ -109,70 +113,46 @@ function winner(a, b, c) {
 }
 
 function checkRow() {
-  if (
-    winner(
-      document.getElementById("c1"),
-      document.getElementById("c2"),
-      document.getElementById("c3")
-    )
-  )
-    return true;
-  else if (
+  winner(
+    document.getElementById("c1"),
+    document.getElementById("c2"),
+    document.getElementById("c3")
+  ) |
     winner(
       document.getElementById("c4"),
       document.getElementById("c5"),
       document.getElementById("c6")
-    )
-  )
-    return true;
-  else if (
+    ) |
     winner(
       document.getElementById("c7"),
       document.getElementById("c8"),
       document.getElementById("c9")
-    )
-  )
-    return true;
-  else if (
+    ) |
     winner(
       document.getElementById("c1"),
       document.getElementById("c4"),
       document.getElementById("c7")
-    )
-  )
-    return true;
-  else if (
+    ) |
     winner(
       document.getElementById("c2"),
       document.getElementById("c5"),
       document.getElementById("c8")
-    )
-  )
-    return true;
-  else if (
+    ) |
     winner(
       document.getElementById("c3"),
       document.getElementById("c6"),
       document.getElementById("c9")
-    )
-  )
-    return true;
-  else if (
+    ) |
     winner(
       document.getElementById("c1"),
       document.getElementById("c5"),
       document.getElementById("c9")
-    )
-  )
-    return true;
-  else if (
+    ) |
     winner(
       document.getElementById("c3"),
       document.getElementById("c5"),
       document.getElementById("c7")
-    )
-  )
-    return true;
+    );
 }
 
 function resetGrid() {
@@ -194,8 +174,8 @@ function buildGrid() {
   submitBtn.style.display = "none";
 
   chooser.classList.add("game-on");
-  for (var i = 1; i <= 9; i++) {
-    var cell = document.createElement("li");
+  for (let i = 1; i <= 9; i++) {
+    let cell = document.createElement("li");
     cell.id = "c" + i;
     cell.addEventListener("click", playerMove, false);
     grid.appendChild(cell);
@@ -203,22 +183,23 @@ function buildGrid() {
   cells = Array.prototype.slice.call(grid.getElementsByTagName("li"));
 }
 
-var players = Array.prototype.slice.call(
+let players = Array.prototype.slice.call(
   document.querySelectorAll("input[name=player-choice]")
 );
 
 players.forEach(function (choice) {
   choice.addEventListener("click", setPlayer);
 });
-var resetButton = chooser.querySelector("#reset");
+
+let resetButton = chooser.querySelector("#reset");
 resetButton.addEventListener("click", function (e) {
   e.preventDefault();
   moves = 0;
   resetGrid();
 });
 
-function selectSym(sym) {
-  huPlayer = sym;
+function selectSymbol(sym) {
+  userPlayer = sym;
   aiPlayer = sym === "O" ? "X" : "O";
   origBoard = Array.from(Array(9).keys());
   for (let i = 0; i < diff_cells.length; i++) {
@@ -227,18 +208,18 @@ function selectSym(sym) {
   if (aiPlayer === "X") {
     turn(bestSpot(), aiPlayer);
   }
-  document.querySelector(".selectSym").style.display = "none";
+  document.querySelector(".selectSymbol_div").style.display = "none";
 }
 
 function startGame() {
   submitBtn.style.display = "none";
-
   chooser.classList.add("game-on");
   table.classList.add("show_table");
   document.querySelector("#reset").style.display = "none";
-  document.querySelector(".endgame").style.display = "none";
-  document.querySelector(".endgame .text").innerText = "";
-  document.querySelector(".selectSym").style.display = "block";
+  document.querySelector(".endGame_div").style.display = "none";
+  document.querySelector(".endGame_div .text").innerText = "";
+  document.querySelector(".selectSymbol_div").style.display = "block";
+
   for (let i = 0; i < diff_cells.length; i++) {
     diff_cells[i].innerText = "";
     diff_cells[i].style.removeProperty("background-color");
@@ -247,8 +228,8 @@ function startGame() {
 
 function turnClick(square) {
   if (typeof origBoard[square.target.id] === "number") {
-    turn(square.target.id, huPlayer);
-    if (!checkWin(origBoard, huPlayer) && !checkTie())
+    turn(square.target.id, userPlayer);
+    if (!checkWin(origBoard, userPlayer) && !checkTie())
       turn(bestSpot(), aiPlayer);
   }
 }
@@ -276,22 +257,23 @@ function checkWin(board, player) {
 function gameOver(gameWon) {
   for (let index of winCombos[gameWon.index]) {
     document.getElementById(index).style.backgroundColor =
-      gameWon.player === huPlayer ? "blue" : "red";
+      gameWon.player === userPlayer ? "blue" : "red";
   }
   for (let i = 0; i < diff_cells.length; i++) {
     diff_cells[i].removeEventListener("click", turnClick, false);
   }
   declareWinner(
-    gameWon.player === huPlayer
+    gameWon.player === userPlayer
       ? userName.value + " is the Winner"
       : "Computer Wins"
   );
 }
 
 function declareWinner(who) {
-  document.querySelector(".endgame").style.display = "block";
-  document.querySelector(".endgame .text").innerText = who;
+  document.querySelector(".endGame_div").style.display = "block";
+  document.querySelector(".endGame_div .text").innerText = who;
 }
+
 function emptySquares() {
   return origBoard.filter((elm, i) => i === elm);
 }
@@ -313,9 +295,9 @@ function checkTie() {
 }
 
 function minimax(newBoard, player) {
-  var availSpots = emptySquares(newBoard);
+  let availSpots = emptySquares(newBoard);
 
-  if (checkWin(newBoard, huPlayer)) {
+  if (checkWin(newBoard, userPlayer)) {
     return { score: -10 };
   } else if (checkWin(newBoard, aiPlayer)) {
     return { score: 10 };
@@ -323,18 +305,18 @@ function minimax(newBoard, player) {
     return { score: 0 };
   }
 
-  var moves = [];
+  let moves = [];
   for (let i = 0; i < availSpots.length; i++) {
-    var move = {};
+    let move = {};
     move.index = newBoard[availSpots[i]];
     newBoard[availSpots[i]] = player;
 
-    if (player === aiPlayer) move.score = minimax(newBoard, huPlayer).score;
+    if (player === aiPlayer) move.score = minimax(newBoard, userPlayer).score;
     else move.score = minimax(newBoard, aiPlayer).score;
     newBoard[availSpots[i]] = move.index;
     if (
       (player === aiPlayer && move.score === 10) ||
-      (player === huPlayer && move.score === -10)
+      (player === userPlayer && move.score === -10)
     )
       return move;
     else moves.push(move);
