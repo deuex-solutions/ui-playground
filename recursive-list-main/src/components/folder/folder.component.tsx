@@ -1,5 +1,4 @@
 import { Box, Link, Paper, Typography } from "@material-ui/core";
-import { FunctionComponent } from "react";
 import { Link as RouterLink } from "react-router-dom";
 import { useFolderStyles } from "./folder.styles";
 
@@ -9,7 +8,7 @@ export interface FolderProps {
   folder: List;
 }
 
-const Folder: FunctionComponent<FolderProps> = ({ folder, ...otherProps }) => {
+const Folder = ({ folder, ...otherProps }: FolderProps) => {
   const classes = useFolderStyles();
 
   return (

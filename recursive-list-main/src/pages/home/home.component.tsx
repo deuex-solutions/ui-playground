@@ -1,9 +1,8 @@
 import { Breadcrumbs } from "components";
-import { FunctionComponent } from "react";
 import { Outlet } from "react-router-dom";
 import { useHomePageStyles } from "./home.styles";
 
-const HomePage: FunctionComponent = () => {
+const HomePage = () => {
   const classes = useHomePageStyles();
 
   return (

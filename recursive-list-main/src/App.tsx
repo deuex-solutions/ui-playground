@@ -1,7 +1,6 @@
-import { FunctionComponent } from "react";
 import AppRouter from "routers/app/app.router";
 
-export const App: FunctionComponent = () => {
+export const App = () => {
   return (
     <div className="App">
       <AppRouter />

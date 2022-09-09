@@ -1,5 +1,4 @@
 import { Breadcrumbs as MuiBreadcrumbs, Link } from "@material-ui/core";
-import { FunctionComponent } from "react";
 import { Link as RouterLink, useLocation } from "react-router-dom";
 import { useBreadcrumbsStyles } from "./breadcrumbs.styles";
 
@@ -11,7 +10,7 @@ export interface GetBreadcrumbList {
   (): Breadcrumb[];
 }
 
-const Breadcrumbs: FunctionComponent = () => {
+const Breadcrumbs = () => {
   const classes = useBreadcrumbsStyles();
   const { pathname } = useLocation();
 

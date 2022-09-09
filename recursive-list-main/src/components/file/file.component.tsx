@@ -1,4 +1,3 @@
-import { FunctionComponent } from "react";
 import { LazyLog, ScrollFollow } from "react-lazylog";
 import { useFileStyles } from "./file.styles";
 
@@ -7,7 +6,7 @@ export interface FileProps {
   name: string;
 }
 
-const File: FunctionComponent<FileProps> = ({ path }) => {
+const File = ({ path }: FileProps) => {
   const classes = useFileStyles();
   return (
     /* displays the content of log file

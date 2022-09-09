@@ -1,6 +1,6 @@
 import { Grid } from "@material-ui/core";
 import { File, Folder } from "components";
-import { FunctionComponent, useCallback } from "react";
+import { useCallback } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { getParamFromPathname } from "utils/params/params.util";
 import { useListStyles } from "./list.styles";
@@ -17,7 +17,7 @@ export interface ListDataProps {
   parent?: string;
 }
 
-const ListData: FunctionComponent<ListDataProps> = ({ list, parent }) => {
+const ListData = ({ list, parent }: ListDataProps) => {
   const classes = useListStyles();
 
   const { pathname } = useLocation();
