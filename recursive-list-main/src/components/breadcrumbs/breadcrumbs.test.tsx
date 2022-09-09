@@ -10,6 +10,6 @@ describe("Breadcrumbs", () => {
       </MemoryRouter>
     );
 
-    expect(screen.getByText("Home")).toHaveAttribute("href", "/");
+    expect(screen.getByTestId("home_svg")).toHaveAttribute("href", "/");
   });
 });

@@ -25,25 +25,25 @@ const ListData = ({ list, parent }: ListDataProps) => {
   const param = getParamFromPathname(pathname);
 
   /* returns List of files and routes them accordingly */
-  const renderChildList = useCallback((item: List) => {
-    if (item.path) {
+  const renderChildList = useCallback((ListItem: List) => {
+    if (ListItem.path) {
       return (
         <Route
-          element={<File name={item.name} path={item.path} />}
-          key={item.name}
-          path={item.name}
+          element={<File name={ListItem.name} path={ListItem.path} />}
+          key={ListItem.name}
+          path={ListItem.name}
         />
       );
     }
 
     /* checks if children exists */
 
-    if (item.children) {
+    if (ListItem.children) {
       return (
         <Route
-          element={<ListData list={item.children} parent={item.name} />}
-          key={item.name}
-          path={`${item.name}/*`}
+          element={<ListData list={ListItem.children} parent={ListItem.name} />}
+          key={ListItem.name}
+          path={`${ListItem.name}/*`}
         />
       );
     }
@@ -56,13 +56,12 @@ const ListData = ({ list, parent }: ListDataProps) => {
       {parent === param && (
         <Grid container spacing={2}>
           {list.map((item) => (
-            <Grid item key={item.name} md={4} sm={6} xs={12}>
+            <Grid item key={item.name} md={4}>
               <Folder folder={item} />
             </Grid>
           ))}
         </Grid>
       )}
-
       <Routes>{list.map((item) => renderChildList(item))}</Routes>
     </div>
   );

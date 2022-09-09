@@ -8,12 +8,12 @@ export interface FolderProps {
   folder: List;
 }
 
-const Folder = ({ folder, ...otherProps }: FolderProps) => {
+const Folder = ({ folder }: FolderProps) => {
   const classes = useFolderStyles();
 
   return (
     /* Checks if it is a file or folder and renders accordingly */
-    <div className={classes.folderContainer} {...otherProps}>
+    <div className={classes.folderContainer}>
       {folder.isFolder ? (
         <Link
           style={{ textDecoration: "none" }}
