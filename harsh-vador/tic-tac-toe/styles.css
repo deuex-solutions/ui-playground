@@ -1,0 +1,259 @@
+html {
+  box-sizing: border-box;
+  text-align: center;
+  margin-top: 50px;
+}
+
+.submit_button {
+  margin-top: 10px;
+  padding: 10px;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+.content {
+  border: 1px #000;
+}
+
+#choose_level {
+  width: fit-content;
+}
+
+form .selectSymbol_div {
+  display: none;
+}
+
+h1 {
+  font-family: "Lobster", serif;
+  text-align: center;
+}
+
+.level_div {
+  display: flex;
+  align-items: center;
+}
+
+.message {
+  color: #000;
+  font-size: 1.5em;
+  margin-bottom: auto;
+  padding-bottom: 1em;
+}
+
+.player_choice_1,
+.player_choice_2 {
+  font-size: 28px;
+}
+
+form {
+  text-align: center;
+}
+
+form label {
+  font-size: 2em;
+  font-weight: bold;
+  vertical-align: middle;
+}
+
+form input[type="radio"] {
+  margin-right: 0.5em;
+  cursor: pointer;
+}
+
+.name {
+  margin-left: 10px;
+}
+
+.name_div {
+  display: inline-flex;
+  margin-top: 10px;
+}
+
+form fieldset {
+  display: inline-block;
+  opacity: 1;
+  transition: all ease 1s;
+}
+
+form.game_on fieldset {
+  opacity: 0;
+  display: none;
+}
+
+form.game_on button {
+  opacity: 1;
+  display: block;
+  margin: 0 auto;
+}
+
+#grid-section {
+  margin: 3em 0;
+}
+
+form.game_on.submit_button {
+  display: none;
+}
+
+#grid {
+  width: 400px;
+  margin: 0 auto;
+}
+
+li {
+  border: 2px solid #000;
+  width: 100px;
+  height: 100px;
+  display: block;
+  float: left;
+  font-size: 3em;
+  text-align: center;
+  padding: 0.5em;
+}
+
+#c1,
+#c2,
+#c3 {
+  border-top: none;
+}
+
+#c3,
+#c6,
+#c9 {
+  border-right: none;
+}
+
+#c7,
+#c8,
+#c9 {
+  border-bottom: none;
+}
+
+#c1,
+#c4,
+#c7 {
+  border-left: none;
+}
+
+.winner {
+  color: green;
+}
+
+.btn_primary,
+.btn_primary:focus {
+  opacity: 0;
+  outline: 0;
+  padding: 5px;
+  transition: all ease 0.3s;
+  cursor: pointer;
+}
+
+.disabled {
+  pointer-events: none;
+}
+
+td {
+  border: 2px solid #333;
+  height: 100px;
+  width: 100px;
+  text-align: center;
+  vertical-align: middle;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  font-size: 70px;
+  cursor: pointer;
+}
+
+table {
+  border-collapse: collapse;
+  position: absolute;
+  left: 50%;
+  margin-left: -155px;
+  top: 50px;
+}
+
+table tr:first-child td {
+  border-top: 0;
+}
+
+table tr:last-child td {
+  border-bottom: 0;
+}
+
+table tr td:first-child {
+  border-left: 0;
+}
+table tr td:last-child {
+  border-right: 0;
+}
+
+.endGame_div {
+  display: none;
+  width: 220px;
+  top: 220px;
+  background-color: rgba(205, 133, 63, 0.8);
+  position: absolute;
+  left: 50%;
+  margin-left: -100px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  text-align: center;
+  border-radius: 5px;
+  color: white;
+  font-size: 2em;
+}
+
+.selectSymbol_div {
+  display: none;
+  width: 220px;
+  top: 220px;
+  background-color: rgba(205, 133, 63, 0.8);
+  position: absolute;
+  left: 50%;
+  margin-left: -110px;
+  padding-top: 10px;
+  padding-bottom: 50px;
+  text-align: center;
+  border-radius: 5px;
+  color: yellow;
+  font-size: 2em;
+}
+
+.selectSymbol_div button {
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  font-size: 50px;
+  width: 70px;
+}
+
+.selectSymbol_div button:first-of-type {
+  margin-right: 10px;
+}
+
+.selectSymbol_div button:last-of-type {
+  margin-left: 10px;
+}
+
+table {
+  display: none;
+}
+
+.selectSymbol_div {
+  display: none;
+}
+
+.show_table {
+  display: block !important;
+  top: 200px;
+}
+
+.home_link {
+  text-decoration: underline;
+  color: #000;
+  font-size: 28px;
+}
+
+.show_table .submit_button {
+  display: none;
+}
